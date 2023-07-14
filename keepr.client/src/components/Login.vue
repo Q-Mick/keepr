@@ -1,31 +1,17 @@
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+    <button class="btn btn-primary text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
     <div v-else>
-      <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
-          <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
-          </div>
-        </div>
-        <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
-          <div class="list-group">
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Manage Account
-              </div>
-            </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
-              <i class="mdi mdi-logout"></i>
-              logout
-            </div>
-          </div>
-        </div>
-      </div>
+   <button @click="logout" class="btn btn-primary">Logout</button>
     </div>
+    <div class="avatar">
+  <div class="w-24 rounded">
+    <img :src="account.picture" />
+  </div>
+</div>
   </span>
 </template>
 
