@@ -1,5 +1,10 @@
 <template>
-<button class="btn btn-secondary">Secondary</button>
+<div class="container">
+  <div class="columns-3">
+
+  </div>
+  <button class="btn btn-primary">Test</button>
+</div>
 </template>
 
 <script>
