@@ -16,7 +16,7 @@
             <DropdownItem as="button" description="">
               My Profile
             </DropdownItem>
-            <DropdownItem as="button" description="">
+            <DropdownItem @click="logout" as="button" description="">
               Sign out
             </DropdownItem>
         </DropdownitemGroup>

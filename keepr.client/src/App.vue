@@ -1,5 +1,5 @@
 <template>
-  <header class="border-b-4 h-14">
+  <header class="border-b-4 h-[73px]">
     <Navbar />
   </header>
   <main>

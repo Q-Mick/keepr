@@ -4,6 +4,8 @@
       <router-link class="" :to="{ name: 'Home' }">
         <button class="btn btn-sm btn-neutral mt-3 mx-3" title="Home Page">Home</button>
       </router-link>
+
+      <!-- NOTE RE_USABLE DROPDOWN -->
       <Dropdown align="left" width="10rem">
       <button class="btn btn-sm btn-ghost" title="Create menu">
         Create
