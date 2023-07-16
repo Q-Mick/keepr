@@ -14,20 +14,16 @@
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95">
             <DialogPanel
-              class="w-full max-w-[50rem] h-[30rem] transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all">
-              
-                <img class="h-full aspect-square w-[50%]" :src="keep.img" alt="Movie" />
-                <div class="card-body">
-                  <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
-                    {{ keep.name }}
-                  </DialogTitle>
-                  <p class="">{{ keep.description }}</p>
-                  <p>Test</p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Save</button>
-                  </div>
+              class="w-full max-w-[60vw] h-[30rem] transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all">
+              <div class="flex">
+                <div class="w-1/2">
+                  <img :src="keep.img" class="absolute inset-0 w-[50%] h-full object-cover rounded-l-lg" alt="keep image">
                 </div>
-              
+                <div class="w-1/2">
+                  <h1>{{ keep.name }}</h1>
+                </div>
+              </div>
+
             </DialogPanel>
           </TransitionChild>
         </div>
