@@ -22,7 +22,7 @@
                     {{ keep.name }}
                   </DialogTitle>
                   <p class="">{{ keep.description }}</p>
-                  <p>Click the button to watch on Jetflix app.</p>
+                  <p>Test</p>
                   <div class="card-actions justify-end">
                     <button class="btn btn-primary">Save</button>
                   </div>
