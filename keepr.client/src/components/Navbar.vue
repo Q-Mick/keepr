@@ -32,7 +32,7 @@
     </div>
     <!-- KEEPR LOGO -->
  
-<div class="h-12 mt-[5px] m-0 sm:mr-[7rem] overflow-hidden">
+<div class="h-12 mt-[5px] m-0 sm:mr-[9.5rem] overflow-hidden">
   <img class="w-full h-full object-cover" src="../assets/img/KeeprLogo.png" />
 </div>
 
