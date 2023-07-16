@@ -1,5 +1,5 @@
 <template>
-  <header class="border-b-4 h-[73px]">
+  <header class="border-b-4 h-[75px]">
     <Navbar />
   </header>
   <main>
@@ -30,9 +30,4 @@ export default {
 }
 
 
-footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
-}
 </style>

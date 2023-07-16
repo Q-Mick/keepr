@@ -2,12 +2,12 @@
   <div class="flex justify-between">
     <div id="home-create-buttons">
       <router-link class="" :to="{ name: 'Home' }">
-        <button class="btn btn-sm btn-neutral mt-3 mx-3" title="Home Page">Home</button>
+        <button class="btn btn-sm btn-outline elevation mt-3 mx-3" title="Home Page">Home</button>
       </router-link>
 
       <!-- NOTE RE_USABLE DROPDOWN -->
       <Dropdown align="left" width="10rem">
-      <button class="btn btn-sm btn-ghost" title="Create menu">
+      <button class="btn btn-sm btn-ghost transition duration-200" title="Create menu">
         Create
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
@@ -32,13 +32,13 @@
     </div>
     <!-- KEEPR LOGO -->
  
-<div class="h-12 mt-[5px] m-0 sm:mr-[9.5rem] overflow-hidden">
-  <img class="w-full h-full object-cover" src="../assets/img/KeeprLogo.png" />
+<div class="h-12 mt-[4px] m-0 sm:mr-[9.5rem] rounded-sm ">
+  <img class="w-full h-full rounded elevation hover:animate-spin motion-reduce" src="../assets/img/KeeprLogo.png" alt="Logo" />
 </div>
 
 
  
-    <Login />
+    <Login class="" />
   </div>
 </template>
 
@@ -56,4 +56,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo-animate:hover{
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, .6);
+}
+.elevation{
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, .6);
+}
+</style>

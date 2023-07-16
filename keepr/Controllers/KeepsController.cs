@@ -51,7 +51,7 @@ public class KeepsController : ControllerBase
     try
     {
       Keep keep = _keepsService.GetById(keepId);
-      return Ok(keep);
+      return keep;
     }
     catch (Exception e)
     {
@@ -81,6 +81,7 @@ public class KeepsController : ControllerBase
     try
     {
       Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+      
       _keepsService.DeleteKeep(keepId, userInfo.Id);
       return Ok("Keep was successfully deleted!");
     }

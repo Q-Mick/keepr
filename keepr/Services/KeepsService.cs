@@ -23,9 +23,10 @@ public class KeepsService
   internal Keep GetById(int keepId)
   {
     Keep keep = _kr.GetById(keepId);
-    if (keep.Name == null) new Exception("Invalid keep ID");
-    // keep.Views++;
-    // _kr.Edit(keep);
+    if (keep.Name == "") throw new Exception("Invalid keep");
+     if (keep.Id == 0) throw new Exception("Invalid keep");
+    keep.Views++;
+    _kr.UpdateKeep(keep);
     return keep;
   }
 
@@ -36,6 +37,7 @@ public class KeepsService
     originalKeep.Name = originalKeep.Name.Length > 0 ? keepData.Name : originalKeep.Name;
     originalKeep.Img = originalKeep.Img.Length > 0 ? keepData.Img : originalKeep.Img;
     originalKeep.Description = originalKeep.Description.Length > 0 ? keepData.Description : originalKeep.Description;
+    originalKeep.Views = originalKeep.Views > 0 ? keepData.Views : originalKeep.Views;
     _kr.UpdateKeep(originalKeep);
 
     return originalKeep;

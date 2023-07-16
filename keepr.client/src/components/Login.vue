@@ -5,9 +5,9 @@
     </button>
     <div class="" v-else>
       <Dropdown align="right" width="10rem" class="mr-2 mt-[5px]">
-        <div class="avatar" title="Account Options">
-          <div class="w-12 rounded-full">
-            <img :src="account.picture" />
+        <div class="avatar" title="Account Options" role="button">
+          <div class="w-12 border-black border rounded-full shadow-md shadow-black elevation" role="img">
+            <img :src="account.picture" alt="profile picture" role="presentation" class="" />
           </div>
         </div>
         <!-- NOTE MENU ITEMS -->
@@ -51,4 +51,8 @@ async function logout() {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.elevation{
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, .6);
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <Menu as="div" class="relative inline-block text-left">
+  <Menu as="div" class="relative inline-block text-left z-10">
     <div>
       <MenuButton as="template">
         <slot />
@@ -30,10 +30,6 @@
 
 <script setup>
 import {Menu, MenuButton, MenuItems} from "@headlessui/vue";
-import DropdownitemGroup from "./DropdownitemGroup.vue"
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { computed } from 'vue'
-import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 const props = defineProps({
   align: {

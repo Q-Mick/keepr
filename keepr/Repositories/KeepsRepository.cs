@@ -67,7 +67,7 @@ public class KeepsRepository
         keep.*,
         act.*
         FROM keeps keep
-        JOIN accounts act ON act.id = keep.creatorId
+        JOIN accounts act ON keep.creatorId = act.id
         WHERE keep.id = @keepId
     ;";
    Keep foundKeep = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
@@ -84,7 +84,8 @@ public class KeepsRepository
     UPDATE keeps SET
     name = @Name,
     description = @Description,
-    img = @Img
+    img = @Img,
+    views = @Views
     WHERE id = @Id;
     ";
     _db.Execute(sql, keep);
