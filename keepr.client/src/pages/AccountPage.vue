@@ -1,8 +1,15 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+  <div class="container">
+
+    <div class="content-center text-center">
+      <h1>Welcome {{ account.name }}</h1>
+      <div class="avatar">
+  <div class="w-24 rounded-full">
+    <img :src="account.picture" />
+  </div>
+</div>
+      <p>{{ account.email }}</p>
+    </div>
   </div>
 </template>
 
@@ -19,7 +26,5 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
-}
+
 </style>

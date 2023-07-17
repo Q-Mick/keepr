@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <button class="btn btn-primary btn-sm my-2 mx-2" @click="login" v-if="!user.isAuthenticated">
+    <button class="btn btn-sm btn-outline elevation mt-3 mx-3" @click="login" v-if="!user.isAuthenticated" title="Login">
       Login
     </button>
     <div class="" v-else>
@@ -13,9 +13,11 @@
         <!-- NOTE MENU ITEMS -->
         <template #items>
           <DropdownitemGroup label="Account options">
-            <DropdownItem as="button" description="">
-              My Profile
-            </DropdownItem>
+            <router-link :to="{ name: 'Account'}">
+              <DropdownItem as="button" description="">
+                My Profile
+              </DropdownItem>
+            </router-link>
             <DropdownItem @click="logout" as="button" description="">
               Sign out
             </DropdownItem>

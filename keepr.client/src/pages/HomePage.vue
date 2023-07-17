@@ -3,8 +3,8 @@
 
     <div class="w-fit mr-2 sm:mr-0">
 
-      <div class="columns-2 sm:columns-4 gap-2 sm:gap-8 pt-5 mb-5">
-        <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" class="my-5"
+      <div class="columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
+        <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" class="my-5 border border-zinc-600"
           :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }" />
       </div>
 
@@ -32,7 +32,7 @@ export default {
   },
   setup() {
     onMounted(() => getKeeps())
-    let openDetails = ref(false)
+    const openDetails = ref(false)
     async function getKeeps() {
       try {
         await keepsService.getKeeps();
