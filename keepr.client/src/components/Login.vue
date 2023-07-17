@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <button @click="login" class="btn btn-sm btn-outline elevation mt-3 mx-3 z-5" v-if="!user.isAuthenticated" title="Login">
+    <button @click="login" class="btn btn-sm btn-outline elevation mx-3" v-if="!user.isAuthenticated" title="Login">
       Login
     </button>
-    <div class="" v-else>
+    <div class="flex items-center" v-else>
       <Dropdown align="right" width="10rem" class="mr-2 mt-[5px]">
         <div class="avatar" title="Account Options" role="button">
           <div class="w-12 border-black border rounded-full shadow-md shadow-black elevation" role="img">

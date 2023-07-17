@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-between">
-    <div id="home-create-buttons">
-      <router-link class="" :to="{ name: 'Home' }">
-        <button class="btn btn-sm btn-outline elevation mt-3 mx-3" title="Home Page">Home</button>
+  <div class="flex justify-between items-center">
+    <div id="home-create-buttons" class="p-0 m-0">
+      <router-link class="p-0 m-0" :to="{ name: 'Home' }">
+        <button class="btn btn-sm btn-outline elevation mx-3" title="Home Page">Home</button>
       </router-link>
 
       <!-- NOTE RE_USABLE DROPDOWN v -->
@@ -33,8 +33,8 @@
     </div>
     <!-- KEEPR LOGO -->
 
-    <div class=" sm:inset-0 flex justify-center pt-[3px] ">
-      <div class="h-12 rounded-sm" :class="[user.isAuthenticated ? 'sm:mr-[9.5rem]' : '']">
+    <div class="sm:inset-0 flex justify-center">
+      <div class="h-12 rounded-sm my-1" :class="[user.isAuthenticated ? 'sm:mr-[9.5rem]' : '']">
         <img class="w-full h-full rounded elevation hover:animate-spin motion-reduce" src="../assets/img/KeeprLogo.png"
           alt="Logo" title="Keepr Co" />
       </div>
