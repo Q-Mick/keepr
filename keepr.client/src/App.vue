@@ -1,6 +1,6 @@
 <template>
   <header class="border-b-4 h-[75px]">
-    <Navbar />
+    <Navbar class="" />
   </header>
   <main>
     <router-view />

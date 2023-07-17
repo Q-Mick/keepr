@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <button class="btn btn-sm btn-outline elevation mt-3 mx-3" @click="login" v-if="!user.isAuthenticated" title="Login">
+    <button @click="login" class="btn btn-sm btn-outline elevation mt-3 mx-3 z-5" v-if="!user.isAuthenticated" title="Login">
       Login
     </button>
     <div class="" v-else>

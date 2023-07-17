@@ -33,8 +33,8 @@
     </div>
     <!-- KEEPR LOGO -->
 
-    <div class="sm:absolute sm:inset-0 flex justify-center pt-1">
-      <div class="h-12 mt-4px rounded-sm">
+    <div class=" sm:inset-0 flex justify-center pt-1 ">
+      <div class="h-12 rounded-sm" :class="[user.isAuthenticated ? 'sm:mr-[9.5rem]' : '']">
         <img class="w-full h-full rounded elevation hover:animate-spin motion-reduce" src="../assets/img/KeeprLogo.png"
           alt="Logo" title="Keepr Co" />
       </div>

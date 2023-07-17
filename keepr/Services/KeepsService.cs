@@ -45,8 +45,8 @@ public class KeepsService
       internal void DeleteKeep(int keepId, string userId)
     {
         Keep keep = GetById(keepId);
-        if (keep.CreatorId != userId) new Exception("Not yours buddy");
+        if (keep.CreatorId != userId) throw new Exception("Not yours buddy");
         int rows = _kr.DeleteKeep(keepId);
-        if (rows > 1) new Exception("Something went wrong. deleted more than 1");
+        if (rows > 1) throw new Exception("Something went wrong. deleted more than 1");
     }
 }
