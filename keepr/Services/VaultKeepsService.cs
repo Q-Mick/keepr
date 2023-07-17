@@ -26,13 +26,13 @@ public class VaultKeepsService
   internal void DeleteVaultKeep(int vaultKeepId, string userId)
   {
         VaultKeep vaultKeep = GetById(vaultKeepId);
-        if (vaultKeep.CreatorId != userId) throw new Exception("Unauthorized to remove this collaborator!");
+        if (vaultKeep.CreatorId != userId) throw new Exception("Unauthorized to remove this vaultKeep!");
         int rows = _vkr.DeleteVaultKeep(vaultKeepId);
         if (rows > 1) throw new Exception("Something went wrong");
     
   }
 
-  internal List<VaultKeepItem> GetKeepsInVault(int vaultId)
+  internal List<VaultKeepItem> GetKeepsInVault(int vaultId, string userId )
   {
           List<VaultKeepItem> vaultKeeps = _vkr.GetKeepsInVault(vaultId);
         return vaultKeeps;

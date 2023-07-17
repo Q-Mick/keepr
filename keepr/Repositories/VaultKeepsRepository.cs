@@ -36,7 +36,7 @@ public class VaultKeepsRepository
   {
     string sql = @"
     DELETE FROM vaultkeeps
-    WHERE id = @vaultKeepId 
+    WHERE Id = @vaultKeepId
     LIMIT 1
     ;";
     int rows = _db.Execute(sql, new { vaultKeepId });
@@ -45,17 +45,20 @@ public class VaultKeepsRepository
 
   internal List<VaultKeepItem>GetKeepsInVault(int vaultId)
   {
-          string sql = @"
+      string sql = @"
       SELECT
       vks.*,
-      keep.*
+      keep.*,
+      act.*
       FROM vaultkeeps vks
       JOIN keeps keep ON keep.id = vks.KeepId
+      JOIN accounts act ON act.id = keep.creatorId
       WHERE vks.VaultId = @VaultId
       ;";
-        List<VaultKeepItem> keeps = _db.Query<VaultKeepItem, VaultKeepItem, VaultKeepItem>(sql, (vaultKeep, keep) =>
+        List<VaultKeepItem> keeps = _db.Query<VaultKeepItem, VaultKeepItem, Account, VaultKeepItem>(sql, (vaultKeep, keep, account) =>
         {
             keep.VaultKeepId = vaultKeep.Id;
+            keep.Creator = account;
             return keep;
         }, new { vaultId }).ToList();
         return keeps;

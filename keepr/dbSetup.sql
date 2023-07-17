@@ -66,3 +66,12 @@ INSERT INTO
 
     ) default charset utf8 COMMENT '';
 
+    DELETE FROM vaultkeeps
+    WHERE id = 27
+    LIMIT 1;
+
+        SELECT
+        vk.*
+        FROM vaultkeeps vk
+        WHERE vk.id = 20
+    
