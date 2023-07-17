@@ -13,16 +13,16 @@
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95">
             <DialogPanel as="div"
-              class="bg-white overflow-hidden p-0 align-middle rounded-lg elevation transition-all max-w-[60rem] min-h-[20rem] max-h-full sm:max-h-[40rem]">
+              class="bg-white overflow-auto sm:overflow-hidden p-0 align-middle rounded-lg elevation transition-all max-w-[60rem] min-h-[20rem] sm:max-h-[40rem] max-h-[95vh] ">
 
 
-
+<div @click="toggleModal" class="sm:hidden absolute transition-all pt-1 right-6 cursor-pointer">X</div>
               <!-- NOTE MODAL CONTAINER START -->
-              <div class="flex flex-col sm:flex-row min-h-full ">
+              <div class="flex flex-col sm:flex-row min-h-full">
                 <!-- SECTION left Modal Pane -->
                 <div id="keep-image" class="sm:w-1/2">
                   <div class="aspect-square w-full">
-                    <img :src="keep.img" class="object-center w-full sm:h-full h-[100%] sm:rounded-l-lg" alt="keep image">
+                    <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg" alt="keep image">
                   </div>
                 </div>
                 <!-- right modal pane -->
@@ -50,16 +50,16 @@
 
                     </div>
                     <!-- BOTTOM -->
-                    <div id="bottom-items" class="flex flex-row w-full px-3 justify-between mb-2">
+                    <div id="bottom-items" class="flex flex-row-reverse sm:flex-row w-full justify-between px-1 sm:px-10  pb-1 sm:pb-4 ">
 
-                      <div class=" flex space-x-1 text-center items-center">
-                        <button class="btn btn-sm">Vaults</button>
-                        <button class="btn btn-neutral btn-sm">Save</button>
+                      <div class=" flex space-x-1 text-center items-end sm:items-center">
+                        <button class="btn btn-xs sm:btn-small">Vaults</button>
+                        <button class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                       </div>
 
-                      <div class="flex text-center items-center">
+                      <div class="flex flex-col-reverse sm:flex-row text-center items-center">
                         <p class="pr-2 font-bold">{{ keep.creator.name }}</p>
-                        <div class="avatar" title="keep creator" role="button">
+                        <div class="avatar mt-2 sm:mt-0" title="keep creator" role="button">
                           <div class="w-12 border-black border rounded-lg shadow-md shadow-black elevation" role="img">
                             <img :src="keep.creator.picture" alt="creator picture" role="presentation" class="" />
                           </div>
