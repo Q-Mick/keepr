@@ -24,7 +24,7 @@ public class KeepsService
   {
     Keep keep = _kr.GetById(keepId);
     if (keep.Name == "") throw new Exception("Invalid keep");
-     if (keep.Id == 0) throw new Exception("Invalid keep");
+    if (keep.Id == 0) throw new Exception("Invalid keep");
     keep.Views++;
     _kr.UpdateKeep(keep);
     return keep;

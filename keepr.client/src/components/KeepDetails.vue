@@ -16,13 +16,14 @@
               class="bg-white overflow-auto sm:overflow-hidden p-0 align-middle rounded-lg elevation transition-all max-w-[60rem] min-h-[20rem] sm:max-h-[40rem] max-h-[95vh] ">
 
 
-<div @click="toggleModal" class="sm:hidden absolute transition-all pt-1 right-6 cursor-pointer">X</div>
+              <div @click="toggleModal" class="sm:hidden absolute transition-all pt-1 right-6 cursor-pointer">X</div>
               <!-- NOTE MODAL CONTAINER START -->
               <div class="flex flex-col sm:flex-row min-h-full">
                 <!-- SECTION left Modal Pane -->
                 <div id="keep-image" class="sm:w-1/2">
                   <div class="aspect-square w-full">
-                    <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg" alt="keep image">
+                    <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg"
+                      alt="keep image">
                   </div>
                 </div>
                 <!-- right modal pane -->
@@ -50,16 +51,23 @@
 
                     </div>
                     <!-- BOTTOM -->
-                    <div id="bottom-items" class="flex flex-row-reverse sm:flex-row w-full justify-between px-1 sm:px-10  pb-1 sm:pb-4 ">
+                    <div id="bottom-items"
+                      class="flex flex-row-reverse sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4 ">
 
-                      <div class=" flex space-x-1 text-center items-end sm:items-center">
-                        <button class="btn btn-xs sm:btn-small">Vaults</button>
+                      <div class="flex space-x-2 text-center items-end sm:items-center">
+                        <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
+                        <select class="select select-bordered select-xs w-full max-w-xs focus:outline-none">
+                          <option disabled selected>Tiny</option>
+                          <option>Tiny Apple</option>
+                          <option>Tiny Orange</option>
+                          <option>Tiny Tomato</option>
+                        </select>
                         <button class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                       </div>
 
-                      <div class="flex flex-col-reverse sm:flex-row text-center items-center">
-                        <p class="pr-2 font-bold">{{ keep.creator.name }}</p>
-                        <div class="avatar mt-2 sm:mt-0" title="keep creator" role="button">
+                      <div class="flex flex-col-reverse sm:flex-row text-center items-start sm:items-center">
+                        <p class="pr-2 text-sm font-bold hidden sm:inline">{{ keep.creator.name }}</p>
+                        <div class="avatar mt-2 sm:mt-0" :title="keep.creator.name" role="button">
                           <div class="w-12 border-black border rounded-lg shadow-md shadow-black elevation" role="img">
                             <img :src="keep.creator.picture" alt="creator picture" role="presentation" class="" />
                           </div>
