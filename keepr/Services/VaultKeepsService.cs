@@ -11,7 +11,7 @@ public class VaultKeepsService
     _vaultsService = vaultsService;
   }
 
-  internal VaultKeep CreateVaultKeeps(VaultKeep vaultKeepData)
+  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
   {
     VaultKeep newVaultKeep = _vkr.CreateVaultKeep(vaultKeepData);
     return newVaultKeep;
