@@ -20,8 +20,6 @@ public class VaultKeepsController : ControllerBase
     try
     {
       Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-      // NOTE: HttpContext is the C# equivalent of 'req' in Node.JS
-      // NOTE we are essentially passing in the entire req or context, so then we can pass the bearer token from the request headers to Auth0
       vaultKeepData.CreatorId = userInfo.Id;
       VaultKeep newVaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData);
       return Ok(newVaultKeep);

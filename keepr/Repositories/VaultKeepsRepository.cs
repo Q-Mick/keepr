@@ -1,11 +1,11 @@
 
 namespace keepr.Repositories;
 
-public class VaultkeepsRepository
+public class VaultKeepsRepository
 {
   private readonly IDbConnection _db;
 
-  public VaultkeepsRepository(IDbConnection db)
+  public VaultKeepsRepository(IDbConnection db)
   {
     _db = db;
   }
@@ -41,5 +41,23 @@ public class VaultkeepsRepository
     ;";
     int rows = _db.Execute(sql, new { vaultKeepId });
     return rows;
+  }
+
+  internal List<VaultKeepItem>GetKeepsInVault(int vaultId)
+  {
+          string sql = @"
+      SELECT
+      vks.*,
+      keep.*
+      FROM vaultkeeps vks
+      JOIN keeps keep ON keep.id = vks.KeepId
+      WHERE vks.VaultId = @VaultId
+      ;";
+        List<VaultKeepItem> keeps = _db.Query<VaultKeepItem, VaultKeepItem, VaultKeepItem>(sql, (vaultKeep, keep) =>
+        {
+            keep.VaultKeepId = vaultKeep.Id;
+            return keep;
+        }, new { vaultId }).ToList();
+        return keeps;
   }
 }

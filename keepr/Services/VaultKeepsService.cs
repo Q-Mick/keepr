@@ -2,13 +2,13 @@ namespace keepr.Services;
 
 public class VaultKeepsService
 {
-  private readonly VaultkeepsRepository _vkr;
-  private readonly VaultKeepsService _vaultsService;
+  private readonly VaultKeepsRepository _vkr;
 
-  public VaultKeepsService(VaultkeepsRepository vkr, VaultKeepsService vaultsService)
+
+  public VaultKeepsService(VaultKeepsRepository vkr)
   {
     _vkr = vkr;
-    _vaultsService = vaultsService;
+
   }
 
   internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
@@ -30,5 +30,11 @@ public class VaultKeepsService
         int rows = _vkr.DeleteVaultKeep(vaultKeepId);
         if (rows > 1) throw new Exception("Something went wrong");
     
+  }
+
+  internal List<VaultKeepItem> GetKeepsInVault(int vaultId)
+  {
+          List<VaultKeepItem> vaultKeeps = _vkr.GetKeepsInVault(vaultId);
+        return vaultKeeps;
   }
 }
