@@ -1,3 +1,4 @@
+import { Profile } from "./Account.js"
 export class Vault{
   constructor(data){
 this.id = data.id

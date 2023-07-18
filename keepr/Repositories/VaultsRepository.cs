@@ -91,5 +91,24 @@ AND NOT vault.IsPrivate
     }, new { profileId }).ToList();
     return profileVaults;
   }
-  
+     internal List<Vault> GetMyVaults(string profileId)
+  {
+    string sql = @"
+SELECT
+    vault.*,
+    act.*
+FROM
+    vaults vault
+JOIN
+    accounts act ON act.id = vault.CreatorId
+WHERE
+    vault.CreatorId = @profileId
+        ;";
+    List<Vault> profileVaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }, new { profileId }).ToList();
+    return profileVaults;
+  }
     }

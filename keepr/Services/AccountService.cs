@@ -34,7 +34,7 @@ private readonly VaultsRepository _vr;
   }
     internal List<Vault> GetMyVaults(string profileId)
   {
-    List<Vault> Keeps = _vr.GetVaultsByProfileId(profileId);
+    List<Vault> Keeps = _vr.GetMyVaults(profileId);
     return Keeps;
   }
 }
