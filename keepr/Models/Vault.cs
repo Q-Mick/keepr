@@ -14,3 +14,8 @@ public class Vault
   // relationship
   public Account Creator { get; set; }
 }
+
+public class VaultKeepVault : Vault
+{
+    public int VaultKeepId { get; set; }
+}
