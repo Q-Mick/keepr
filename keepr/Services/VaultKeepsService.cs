@@ -3,16 +3,19 @@ namespace keepr.Services;
 public class VaultKeepsService
 {
   private readonly VaultKeepsRepository _vkr;
+  private readonly VaultsService _vaultsService;
 
-
-  public VaultKeepsService(VaultKeepsRepository vkr)
+  public VaultKeepsService(VaultKeepsRepository vkr, VaultsService vaultsService)
   {
     _vkr = vkr;
+    _vaultsService = vaultsService;
 
   }
 
-  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
+  internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData, string userId)
   {
+    Vault vault = _vaultsService.GetById(vaultKeepData.VaultId, userId);
+    if (vault.CreatorId != userId) throw new Exception("Not yours");
     VaultKeep newVaultKeep = _vkr.CreateVaultKeep(vaultKeepData);
     return newVaultKeep;
   }
@@ -20,7 +23,6 @@ public class VaultKeepsService
       internal VaultKeep GetById(int VaultKeepId)
     {
         VaultKeep VaultKeep = _vkr.GetById(VaultKeepId);
-        if (VaultKeep == null) new Exception("Invalid id");
         return VaultKeep;
     }
   internal void DeleteVaultKeep(int vaultKeepId, string userId)
@@ -32,9 +34,11 @@ public class VaultKeepsService
     
   }
 
-  internal List<VaultKeepItem> GetKeepsInVault(int vaultId, string userId )
+  internal List<VaultKeepItem> GetKeepsInVault(int vaultId)
   {
+
           List<VaultKeepItem> vaultKeeps = _vkr.GetKeepsInVault(vaultId);
+         if (vaultKeeps == null) throw new Exception("No vaultKeep found");
         return vaultKeeps;
   }
 }

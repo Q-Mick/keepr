@@ -32,13 +32,13 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-    [HttpGet("{vaultId}")]
+  [HttpGet("{vaultId}")]
   public async Task<ActionResult<Vault>> GetById(int vaultId)
   {
     try
     {
       Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-      Vault vault = _vaultsService.GetById(vaultId, userInfo.Id);
+      Vault vault = _vaultsService.GetById(vaultId, userInfo?.Id);
       return vault;
     }
     catch (Exception e)
@@ -46,13 +46,14 @@ public class VaultsController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-      [HttpGet("{vaultId}/keeps")]
+    [HttpGet("{vaultId}/keeps")]
     async public Task<ActionResult<List<VaultKeepItem>>> GetKeepsInVault(int vaultId)
     {
         try
         {
           Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-            List<VaultKeepItem> vaultKeeps = _vaultKeepsService.GetKeepsInVault(vaultId, userInfo.Id);
+            Vault vault = _vaultsService.GetById(vaultId, userInfo?.Id);
+            List<VaultKeepItem> vaultKeeps = _vaultKeepsService.GetKeepsInVault(vaultId);
             return vaultKeeps;
         }
         catch (Exception e)
@@ -60,7 +61,7 @@ public class VaultsController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    [HttpPut("{vaultId}")]
+  [HttpPut("{vaultId}")]
   [Authorize]
   public async Task<ActionResult<Vault>> UpdateVault(int vaultId, [FromBody] Vault vaultData)
   {

@@ -1,12 +1,13 @@
-CREATE TABLE IF NOT EXISTS accounts(
-  id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
-  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-  name varchar(255) COMMENT 'User Name',
-  email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture',
-  coverImg varchar(255) COMMENT 'User Cover Image'
-) default charset utf8 COMMENT '';
+CREATE TABLE
+    IF NOT EXISTS accounts(
+        id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        name varchar(255) COMMENT 'User Name',
+        email varchar(255) COMMENT 'User Email',
+        picture varchar(255) COMMENT 'User Picture',
+        coverImg varchar(255) COMMENT 'User Cover Image'
+    ) default charset utf8 COMMENT '';
 
 ALTER TABLE accounts
 ADD
@@ -27,19 +28,20 @@ CREATE TABLE
 
 INSERT INTO
     keeps(
-      name,
-      creatorId,
-      description,
-      img
+        name,
+        creatorId,
+        description,
+        img
     )
-VALUES(
-  "Gaming Rig",
-  "646d205e9bfe771cd1820821",
-  "RGB gaming setup",
-  "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
-);
+VALUES
+(
+        "Gaming Rig",
+        "646d205e9bfe771cd1820821",
+        "RGB gaming setup",
+        "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+    );
 
-    CREATE TABLE
+CREATE TABLE
     IF NOT EXISTS vaults(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         creatorId VARCHAR(255) NOT NULL,
@@ -53,25 +55,39 @@ VALUES(
     ) default charset utf8 COMMENT '';
 
 INSERT INTO
-  vaults(creatorId, name, description, img)
-  VALUES("646d205e9bfe771cd1820821", "a set of a bunch of awesome gaming PCs", "Gaming PCs", "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" );
+    vaults(
+        creatorId,
+        name,
+        description,
+        img
+    )
+VALUES
+(
+        "646d205e9bfe771cd1820821",
+        "a set of a bunch of awesome gaming PCs",
+        "Gaming PCs",
+        "https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+    );
 
-
-        CREATE TABLE
+CREATE TABLE
     IF NOT EXISTS vaultkeeps(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         creatorId VARCHAR(255) NOT NULL,
         vaultId INT NOT NULL,
         keepId INT NOT NULL
-
     ) default charset utf8 COMMENT '';
 
-    DELETE FROM vaultkeeps
-    WHERE id = 27
-    LIMIT 1;
+DELETE FROM vaultkeeps WHERE id = 27 LIMIT 1;
 
-        SELECT
-        vk.*
-        FROM vaultkeeps vk
-        WHERE vk.id = 20
-    
+SELECT vk.*
+FROM vaultkeeps vk
+WHERE vk.id = 20;
+
+      SELECT
+      vks.*,
+      keep.*,
+      act.*
+      FROM vaultkeeps vks
+      JOIN keeps keep ON keep.id = vks.KeepId
+      JOIN accounts act ON act.id = keep.creatorId
+      WHERE vks.VaultId = 124
