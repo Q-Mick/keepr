@@ -33,8 +33,7 @@ INSERT INTO
         description,
         img
     )
-VALUES
-(
+VALUES (
         "Gaming Rig",
         "646d205e9bfe771cd1820821",
         "RGB gaming setup",
@@ -61,8 +60,7 @@ INSERT INTO
         description,
         img
     )
-VALUES
-(
+VALUES (
         "646d205e9bfe771cd1820821",
         "a set of a bunch of awesome gaming PCs",
         "Gaming PCs",
@@ -79,15 +77,16 @@ CREATE TABLE
 
 DELETE FROM vaultkeeps WHERE id = 27 LIMIT 1;
 
-SELECT vk.*
-FROM vaultkeeps vk
-WHERE vk.id = 20;
+SELECT vk.* FROM vaultkeeps vk WHERE vk.id = 20;
 
-      SELECT
-      vks.*,
-      keep.*,
-      act.*
-      FROM vaultkeeps vks
-      JOIN keeps keep ON keep.id = vks.KeepId
-      JOIN accounts act ON act.id = keep.creatorId
-      WHERE vks.VaultId = 124
+SELECT vks.*, keep.*, act.*
+FROM vaultkeeps vks
+    JOIN keeps keep ON keep.id = vks.KeepId
+    JOIN accounts act ON act.id = keep.CreatorId
+WHERE vks.VaultId = 124;
+
+SELECT keep.*, act.*
+FROM keeps keep
+    JOIN accounts act ON act.id = keep.CreatorId
+WHERE
+    keep.CreatorId = '648b6d84e289b1b37944ac30';

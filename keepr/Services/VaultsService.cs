@@ -47,4 +47,9 @@ public class VaultsService
     return "Vault has been deleted";
 
   }
+
+  internal List<Vault> GetMyVaults(string profileId)
+  {
+    throw new NotImplementedException();
+  }
 }

@@ -70,4 +70,25 @@ public class VaultsRepository
     int rows = _db.Execute(sql, new { vaultId });
     return rows;
   }
+   internal List<Vault> GetVaultsByProfileId(string profileId)
+  {
+    string sql = @"
+ SELECT
+    vault.*,
+    act.*
+FROM
+    vaults vault
+JOIN
+    accounts act ON act.id = vault.CreatorId
+WHERE
+    vault.CreatorId = @profileId;
+        ;";
+    List<Vault> profileVaults = _db.Query<Vault, Account, Vault>(sql, (vault, profile) =>
+    {
+      vault.Creator = profile;
+      return vault;
+    }, new { profileId }).ToList();
+    return profileVaults;
+  }
+  
     }

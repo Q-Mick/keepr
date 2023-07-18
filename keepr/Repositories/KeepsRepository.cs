@@ -67,15 +67,15 @@ public class KeepsRepository
         JOIN accounts act ON keep.creatorId = act.id
         WHERE keep.id = @keepId
     ;";
-   Keep foundKeep = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
-   {
-        keep.Creator = account;
-        return keep;
-   }, new { keepId }).FirstOrDefault();
-   return foundKeep;
-}
+    Keep foundKeep = _db.Query<Keep, Account, Keep>(sql, (keep, account) =>
+    {
+      keep.Creator = account;
+      return keep;
+    }, new { keepId }).FirstOrDefault();
+    return foundKeep;
+  }
 
- internal void UpdateKeep(Keep keep)
+  internal void UpdateKeep(Keep keep)
   {
     string sql = @"
     UPDATE keeps SET
@@ -87,14 +87,34 @@ public class KeepsRepository
     ";
     _db.Execute(sql, keep);
   }
-    internal int DeleteKeep(int keepId)
+  internal int DeleteKeep(int keepId)
   {
     string sql = @"
-     DELETE FROM keeps
-     WHERE id = @keepId 
-     LIMIT 1
-     ;";
+      DELETE FROM keeps
+      WHERE id = @keepId 
+      LIMIT 1
+      ;";
     int rows = _db.Execute(sql, new { keepId });
     return rows;
+  }
+  internal List<Keep> GetKeepsByProfileId(string profileId)
+  {
+    string sql = @"
+ SELECT
+    keep.*,
+    act.*
+FROM
+    keeps keep
+JOIN
+    accounts act ON act.id = keep.CreatorId
+WHERE
+    keep.CreatorId = @profileId;
+        ;";
+    List<Keep> profileKeeps = _db.Query<Keep, Account, Keep>(sql, (keep, profile) =>
+    {
+      keep.Creator = profile;
+      return keep;
+    }, new { profileId }).ToList();
+    return profileKeeps;
   }
 }
