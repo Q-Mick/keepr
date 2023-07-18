@@ -42,11 +42,12 @@ public class ProfilesController : ControllerBase
     }
   }
     [HttpGet("{profileId}/vaults")]
-  public ActionResult<List<Vault>> GetVaultsByProfileId(string profileId)
+  public async Task<ActionResult<List<Vault>>> GetVaultsByProfileId(string profileId)
   {
     try
     {
-      List<Vault> vaults = _profileService.GetVaultsByProfileId(profileId);
+      Profile userInfo = await _auth0Provider.GetUserInfoAsync<Profile>(HttpContext);
+      List<Vault> vaults = _profileService.GetVaultsByProfileId(profileId, userInfo?.Id);
       return Ok(vaults);
     }
     catch (Exception e)
@@ -54,4 +55,5 @@ public class ProfilesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
 }

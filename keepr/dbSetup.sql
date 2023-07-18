@@ -13,6 +13,9 @@ ALTER TABLE accounts
 ADD
     COLUMN coverImg VARCHAR(255) NOT NULL DEFAULT "https://images.unsplash.com/photo-1595599512948-b9831e5fc11c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80";
 
+ALTER TABLE keeps
+ADD
+    COLUMN Kept INT NOT NULL DEFAULT 0;
 CREATE TABLE
     IF NOT EXISTS keeps(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -90,3 +93,14 @@ FROM keeps keep
     JOIN accounts act ON act.id = keep.CreatorId
 WHERE
     keep.CreatorId = '648b6d84e289b1b37944ac30';
+
+SELECT
+    vault.*,
+    act.*
+FROM
+    vaults vault
+JOIN
+    accounts act ON act.id = vault.CreatorId
+WHERE
+    vault.CreatorId = '648cfae3f4c3b27d6717acfe'
+AND NOT vault.IsPrivate

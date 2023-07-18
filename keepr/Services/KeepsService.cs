@@ -29,7 +29,14 @@ public class KeepsService
     _kr.UpdateKeep(keep);
     return keep;
   }
+  internal Keep UpdateKeptCount(int keepId, Keep keepData)
+  {
+    Keep originalKeep = GetById(keepId);
+    originalKeep.Kept = originalKeep.Kept != keepData.Kept ? keepData.Kept : originalKeep.Kept;
+    _kr.UpdateKeep(originalKeep);
 
+    return originalKeep;
+  }
   internal Keep UpdateKeep(int keepId, Keep keepData)
   {
     Keep originalKeep = GetById(keepId);

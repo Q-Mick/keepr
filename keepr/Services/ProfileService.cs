@@ -22,10 +22,10 @@ public class ProfileService
     List<Keep> Keeps = _kr.GetKeepsByProfileId(profileId);
     return Keeps;
   }
-  internal List<Vault> GetVaultsByProfileId(string profileId)
+  internal List<Vault> GetVaultsByProfileId(string profileId, string userId)
   {
-    List<Vault> Keeps = _vr.GetVaultsByProfileId(profileId);
-    return Keeps;
+    List<Vault> vaults = _vr.GetVaultsByProfileId(profileId);
+    return vaults;
   }
 
 

@@ -12,7 +12,7 @@ public class Vault
   public DateTime CreatedAt { get; set; }
   public DateTime UpdatedAt { get; set; }
   // relationship
-  public Account Creator { get; set; }
+  public Profile Creator  { get; set; }
 }
 
 public class VaultKeepVault : Vault

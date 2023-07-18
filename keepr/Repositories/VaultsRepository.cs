@@ -73,7 +73,7 @@ public class VaultsRepository
    internal List<Vault> GetVaultsByProfileId(string profileId)
   {
     string sql = @"
- SELECT
+SELECT
     vault.*,
     act.*
 FROM
@@ -81,9 +81,10 @@ FROM
 JOIN
     accounts act ON act.id = vault.CreatorId
 WHERE
-    vault.CreatorId = @profileId;
+    vault.CreatorId = @profileId
+AND NOT vault.IsPrivate
         ;";
-    List<Vault> profileVaults = _db.Query<Vault, Account, Vault>(sql, (vault, profile) =>
+    List<Vault> profileVaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
     {
       vault.Creator = profile;
       return vault;

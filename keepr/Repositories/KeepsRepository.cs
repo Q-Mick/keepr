@@ -13,9 +13,9 @@ public class KeepsRepository
   {
     string sql = @"
     INSERT INTO
-    keeps(name, creatorId ,description, img)
+    keeps(name, creatorId ,description, img, kept)
     VALUES
-    (@Name, @CreatorId, @Description, @Img);
+    (@Name, @CreatorId, @Description, @Img, @Kept);
 
     SELECT
     keep.*,
@@ -82,7 +82,8 @@ public class KeepsRepository
     name = @Name,
     description = @Description,
     img = @Img,
-    views = @Views
+    views = @Views,
+    kept = @Kept
     WHERE id = @Id;
     ";
     _db.Execute(sql, keep);
