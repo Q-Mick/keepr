@@ -1,14 +1,18 @@
 <template>
-  <div class="container">
-
-    <div class="content-center text-center">
-      <h1>Welcome {{ account.name }}</h1>
-      <div class="avatar">
-  <div class="w-24 rounded-full">
-    <img :src="account.picture" />
+  <div class="container min-w-full">
+    <div class="flex flex-col justify-center items-center align-middle mt-7">
+<div class="relative w-full px-5 sm:px-0 sm:w-2/5 h-96">
+  <img class="h-full w-full aspect-video" :src="account.coverImg" alt="">
+  <div class="avatar absolute bottom-[-2rem] left-[45%] rounded-full border border-black elevation">
+    <div class="w-[5rem] rounded-full">
+    <img :src="account.picture" alt="" title="Account Picture">
   </div>
 </div>
-      <p>{{ account.email }}</p>
+</div>
+<div class="">...</div>
+<div class="">Column 3</div>
+
+
     </div>
   </div>
 </template>
@@ -26,5 +30,6 @@ export default {
 </script>
 
 <style scoped>
-
-</style>
+.elevation {
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, .6);
+}</style>
