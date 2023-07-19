@@ -19,15 +19,36 @@
 
               <!-- NOTE MODAL FORM START-->
               <!-- SECTION MODAL FORM GUTS-->
-              <div class="flex flex-col sm:flex-row min-h-full ">
-        <p>ITS WORKING</p>
-        <button @click="toggleModal" class="btn btn-primary">Close Modal</button>
-              </div>
-              <!-- !SECTION end modal guts -->
+              <section id="modal-guts">
+                <div class="flex flex-col min-h-full p-3">
+                  <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
+                  <div class="flex flex-col space-y-5">
 
-            </DialogPanel>
-          </TransitionChild>
+                    <input required v-model="vaultData.name" maxlength="20" id="Vault name" type="text"
+                      placeholder="Vault name" class="min-w-[20rem] input input-bordered input-sm w-full max-w-xs"
+                      title="vault name" />
+                    <input required v-model="vaultData.img" type="text" placeholder="Vault image url" maxlength="400"
+                      class="input input-bordered input-sm w-full max-w-xs" title="image url" />
+                    <textarea required v-model="vaultData.description" maxlength="100" placeholder="Vault description"
+                      class="min-h-[7rem] p-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs"
+                      title="description"></textarea>
+                    <div class="form-control bg-slate-100">
+                    <label class="label cursor-pointer">
+                      <span class="label-text">is the Vault private?</span>
+                      <input id="isPrivate" type="checkbox" checked="checked" class="checkbox border border-black indeterminate:bg-gray-300 valid:border-green-500" />
+                    </label>
+                  </div>
+                  <!-- <input v-model="vaultData.isPrivate" type="checkbox" checked="false" class="checkbox" title="is Private?" /> -->
+                  <button @click="createVault()" class="btn btn-neutral btn-sm">create</button>
+                </div>
         </div>
+
+        </section>
+        <!-- !SECTION end modal guts -->
+
+        </DialogPanel>
+        </TransitionChild>
+      </div>
       </div>
     </Dialog>
   </TransitionRoot>
@@ -40,19 +61,26 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { PlusIcon } from '@heroicons/vue/20/solid'
 import { Keep } from "../models/Keep.js";
 
-const emit = defineEmits(['toggle-new-vault']);
+const emit = defineEmits(['toggle-new-vault', 'create-vault']);
 const props = defineProps({
   isOpen: Boolean,
 
 })
-
+const vaultData = ref({ name: "", img: "", description: ""})
 const toggleModal = () => {
   console.log(`[event triggered]`)
   emit('toggle-new-vault');
 }
+function createVault() {
+
+  logger.log(vaultData.name)
+  if (vaultData.value.name == "" | vaultData.value.image == "" | vaultData.value.description == "") {
+    Pop.error("All fields are required to create a vault, please fill out the form appropriately.")
+    return
+  }
+  emit('create-vault', vaultData.value)
+}
 </script>
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

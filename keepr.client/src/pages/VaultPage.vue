@@ -4,7 +4,7 @@
     <div class="relative mx-auto max-w-7xl text-center px-10 mt-5 h-[15rem] overflow-hidden">
       <img :src="vault?.img" alt="Vault image" :title="vault?.name" class="aspect-video h-full mx-auto rounded-lg">
       <p class="absolute inset-36 text-white font-serif font-boldest text-4xl custom-text-shadow">{{ vault?.name }}</p>
-      <p class="absolute inset-44 text-white font-serif">By {{ vault.creator.name }}</p>
+      <p class="absolute inset-44 text-white font-serif">By {{ vault?.creator?.name }}</p>
     </div>
   </section>
 </template>

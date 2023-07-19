@@ -13,6 +13,11 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      display: ['group-focus']
+    },
+  },
   plugins: [require("daisyui"),require('@tailwindcss/forms')],
   // daisyUI config (optional - here are the default values)
   daisyui: {

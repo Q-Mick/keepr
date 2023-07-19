@@ -28,16 +28,16 @@ a {
 
 input,
 textarea,
-// select {
-//   &:not(:placeholder-shown) {
-//     &:valid {
-//       border: 1px solid $success;
-//     }
-//     &:invalid {
-//       border: 1px solid $danger;
-//     }
-//   }
-// }
+select {
+  &:not(:placeholder-shown) {
+    &:valid {
+      border: rgb(122, 191, 110)
+    }
+    &:invalid {
+      border: rgb(252, 122, 122)
+    }
+  }
+}
 
 form:invalid button[type="submit"] {
   filter: grayscale(1);

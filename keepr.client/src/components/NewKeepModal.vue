@@ -22,14 +22,14 @@
               <!-- NOTE MODAL FORM START-->
               <!-- SECTION MODAL FORM GUTS-->
               <section id="modal-guts">
-                <div class="flex flex-col min-h-full p-4">
+                <div class="flex flex-col min-h-full p-3">
                   <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
                   <div class="flex flex-col space-y-5">
 
-                    <input  maxlength="20" id="title" type="text" placeholder="Title" class="input input-bordered input-sm w-full max-w-xs" />
-                    <input type="text" placeholder="Image" class="input input-bordered input-sm w-full max-w-xs" />
-                    <textarea required minlength="5" maxlength="1000" v-model="keepData.description" rows="4" name="comment" id="comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                    <button @click="toggleModal" class="btn btn-neutral btn-sm">create</button>
+                    <input required v-model="keepData.name" maxlength="20" id="title" type="text" placeholder="keep title" class="min-w-[20rem] input input-bordered input-sm w-full max-w-xs" />
+                    <input required v-model="keepData.img" type="text" placeholder="keep image url" maxlength="400" class="input input-bordered input-sm w-full max-w-xs" />
+                    <textarea required v-model="keepData.description" placeholder="Keep description" class=" min-h-[7rem] p-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
+                    <button @click="createKeep()" class="btn btn-neutral btn-sm">create</button>
                   </div>
                 </div>
                 
@@ -50,16 +50,27 @@ import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
 import { Keep } from "../models/Keep.js";
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
 
-const emit = defineEmits(['toggle-new-keep']);
+const emit = defineEmits(['toggle-new-keep', 'create-keep']);
 const props = defineProps({
   isOpen: Boolean,
 
 })
-const keepData = ref({})
-const toggleModal = () => {
+const keepData = ref({name: "", img: "", description: "" })
+function toggleModal(){
   console.log(`[event triggered]`)
   emit('toggle-new-keep')
+}
+function createKeep(){
+  
+  logger.log(keepData.name)
+  if (keepData.value.name == "" | keepData.value.image == "" | keepData.value.description == "") {
+    Pop.error("All fields are required to create a keep, please fill out the form appropriately.")
+    return
+  }
+  emit('create-keep', keepData.value)
 }
 </script>
 

@@ -42,7 +42,7 @@
     <Login class="" />
   </div>
 
-  <NewKeepModal @toggle-new-keep="toggleCreateKeep" v-model:isOpen="openNewKeep" />
+  <NewKeepModal @create-keep="createNewKeep" @toggle-new-keep="toggleCreateKeep" v-model:isOpen="openNewKeep" />
   <NewVaultModal @toggle-new-vault="toggleCreateVault" v-model:isOpen="openNewVault" />
 </template>
 
@@ -56,6 +56,8 @@ import Dropdown from "./Dropdown.vue"
 import NewKeepModal from "./NewKeepModal.vue";
 import NewVaultModal from "./NewVaultModal.vue";
 import DropdownitemGroup from "./DropdownitemGroup.vue"
+import { keepsService } from '../services/KeepsService.js'
+import { vaultsService } from "../services/VaultsService.js";
 export default {
   components: {
     NewKeepModal,
@@ -74,14 +76,18 @@ export default {
         logger.log(`[TOGGLE NEW KEEP EVENT RECEIVED]`);
 
         openNewKeep.value = !openNewKeep.value
-  
-},
+
+      },
       toggleCreateVault() {
-        logger.log(`[TOGGLE NEW Vault EVENT RECEIVED]`);
+        logger.log(`[TOGGLE NEW VAULT EVENT RECEIVED]`);
 
         openNewVault.value = !openNewVault.value
-  
-}
+      },
+      createNewKeep(keepData){
+       const newKeep = keepsService.createKeep(keepData)
+       logger.log("[KEEP CREATED] -", newKeep)
+       openNewKeep.value = false
+      }
     }
   },
   components: { Login }

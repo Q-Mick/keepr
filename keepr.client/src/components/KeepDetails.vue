@@ -56,7 +56,7 @@
 
                       <div class="flex space-x-2 text-center items-end sm:items-center">
                         <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
-                        <select class="py-0 select select-bordered select-xs w-full max-w-xs focus:outline-none">
+                        <select class="py-0 bg-slate-100 select select-xs w-full max-w-xs focus:outline-none focus:border-none focus:ring-neutral">
                           <option disabled selected class="font-bold">Vaults</option>
                           <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
                         </select>
