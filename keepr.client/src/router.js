@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { authGuard } from '@bcwdev/auth0provider-client'
+import { AppState } from "./AppState.js"
 
 function loadPage(page) {
   return () => import(`./pages/${page}.vue`)
@@ -14,7 +15,17 @@ const routes = [
   {
     path: '/profile/:profileId',
     name: 'Profile',
-    component: loadPage('ProfilePage')
+    component: loadPage('ProfilePage'),
+    beforeEnter: (to, from, next) => {
+
+      const profileId = to.params.profileId;
+      if (AppState.account.id === profileId) {  
+        next({ name: 'Account' });
+      } else {
+        next();
+      }
+    }
+
   },
   {
     path: '/account',
