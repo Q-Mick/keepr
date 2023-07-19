@@ -5,11 +5,13 @@
 
     <h2 class="pl-2 pb-1 m-0 absolute left-0 bottom-0 text-white text-lg custom-text-shadow font-semibold font-serif">{{
       keep.name }}</h2>
-    <div class="absolute avatar right-0 bottom-0 pr-2 pb-[3px] ">
-      <div class="w-10 rounded-full border border-black avatar-elevation">
-        <img :src="keep.creator.picture" />
-      </div>
-    </div>
+      <router-link v-if="showCreatorPic" :to="{ name: 'Profile', params: { profileId: keep.creatorId }}">
+        <div class="absolute avatar right-0 bottom-0 pr-2 pb-[3px] ">
+          <div v-if="showCreatorPic" class="w-10 rounded-full border border-black avatar-elevation">
+            <img :src="keep.creator.picture" />
+          </div>
+        </div>
+      </router-link>
   </div>
 </template>
 
@@ -24,6 +26,10 @@ const props = defineProps({
     type: Keep,
     required: true,
   },
+  showCreatorPic:{
+    type: Boolean,
+    default: true
+  } 
 });
 async function openKeepDetails(keepId) {
   // console.log(`[FROM KEEP COMPONENT] payload = ${keepId}`)

@@ -19,21 +19,48 @@ class AccountService {
   async getAccountVaults(){ 
     try {
       
-      const vres = await api.get('/account/vaults')
+      const res = await api.get('/account/vaults')
       // logger.log('[VRES DATA]', vres.data)
-      AppState.myVaults = vres.data.map((v) => new Vault(v));
+      AppState.myVaults = res.data.map((v) => new Vault(v));
       logger.log(AppState.myVaults)
     } catch (err) {
-      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+      logger.error('Are you logged in?', err)
     }
   }
   async getAccountKeeps(){ 
     try {
-      const kres = await api.get(`/api/profiles/${AppState.account.id}/keeps`)
-      AppState.myKeeps = kres.data.map((k) => new Keep(k));
+      const res = await api.get(`/api/profiles/${AppState.account.id}/keeps`)
+      AppState.myKeeps = res.data.map((k) => new Keep(k));
       logger.log(AppState.myKeeps)
     } catch (err) {
-      logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+      logger.error('Are you logged in?', err)
+    }
+  }
+  async getProfile(profileId){ 
+    try {
+      const res = await api.get(`/api/profiles/${profileId}`)
+      AppState.activeProfile = new Profile(res.data);
+      logger.log(`[PROFILE SET]`, AppState.activeProfile)
+    } catch (err) {
+      logger.error('Cant find this profile.', err)
+    }
+  }
+  async getProfileKeeps(profileId){ 
+    try {
+      const res = await api.get(`/api/profiles/${profileId}/keeps`)
+      AppState.profileKeeps = res.data.map((k) => new Keep(k));
+      logger.log(`[PROFILE KEEPS]`, AppState.profileKeeps)
+    } catch (err) {
+      logger.error('Cant find this profile.', err)
+    }
+  }
+  async getProfileVaults(profileId){ 
+    try {
+      const res = await api.get(`/api/profiles/${profileId}/vaults`)
+      AppState.profileVaults = res.data.map((v) => new Vault(v));
+      logger.log(`[PROFILE VAULTS]`, AppState.profileVaults)
+    } catch (err) {
+      logger.error('Cant find this profile.', err)
     }
   }
 }

@@ -5,7 +5,9 @@ export const AppState = reactive({
   user: {},
   /** @type {import('./models/Account.js').Account} */
   account: {},
-
+  /** @type {import('./models/Account.js').Profile | null} */
+  activeProfile:{},
+  profileVaults: [],
   /** @type {import('./models/Keep.js').Keep[]} */
   keeps: [],
   
@@ -14,10 +16,14 @@ export const AppState = reactive({
 
   /** @type {import('./models/Keep.js').Keep[] | null} */
   myKeeps: [],
+  /** @type {import('./models/Keep.js').Keep[] | null} */
+  profileKeeps:[],
 
   /** @type {import('./models/Vault.js').Vault[]} */
   vaults: [],
-  activeVault: {},
+  actVault: {},
+
+ 
   /** @type {import('./models/Vault.js').Vault[] | null} */
   myVaults: [],
 

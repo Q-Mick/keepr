@@ -66,13 +66,20 @@
                       </div>
 
                       <div class="flex flex-col-reverse sm:flex-row text-center items-start sm:items-center">
+                        
                         <p class="pr-2 text-sm font-bold hidden sm:inline">{{ keep.creator.name }}</p>
-                        <div class="avatar mt-2 sm:mt-0" :title="keep.creator.name" role="button">
-                          <div class="w-12 border-black border rounded-lg shadow-md shadow-black elevation" role="img">
-                            <img :src="keep.creator.picture" alt="creator picture" role="presentation" class="" />
+                        <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId }}">
+                          <div class="avatar mt-2 sm:mt-0" :title="keep.creator.name" role="button">
+                            <div class="w-12 border-black border rounded-lg shadow-md shadow-black elevation" role="img">
+                              <img :src="keep.creator.picture" alt="creator picture" role="presentation" class="" />
+                            </div>
                           </div>
-                        </div>
+                        </router-link>
+                      
+                        
                       </div>
+
+                      
                     </div>
 
                   </div>

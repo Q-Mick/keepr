@@ -13,7 +13,7 @@
 
   </div>
 
-<KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" />
+  <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" />
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
     return {
       actKeep: computed(() => AppState.actKeep),
       keeps: computed(() => AppState.keeps),
-      openDetailsModal: computed(() => openDetails.value),
+      openDetailsModal: computed(() => openDetail.value),
       openDetails,
       getKeeps,
       async setActiveKeep(keepId) {

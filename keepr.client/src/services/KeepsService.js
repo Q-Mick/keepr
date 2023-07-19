@@ -2,6 +2,7 @@ import { api } from "./AxiosService";
 import { AppState } from "../AppState";
 import { Keep } from "../models/Keep.js";
 import { logger } from "../utils/Logger";
+import { Account } from "../models/Account.js";
 import Pop from "../utils/Pop.js";
 
 class KeepsService {
@@ -35,6 +36,11 @@ class KeepsService {
     const res = await api.put(`api/keeps/${keepId}`, keepData)
     return res.data
   }
-}
-
+  async deleteKeep(keepId){
+    const res = await api.delete(`api/keeps/${keepId}`)
+    logger.log('[KEEP DELETED ]', res.data)
+    const keepToDelete = AppState.myKeeps.findIndex(v => v.id == keepId)
+    AppState.myKeeps.splice(keepToDelete, 1)
+  }
+  }
 export const keepsService = new KeepsService();
