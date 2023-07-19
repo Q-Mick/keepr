@@ -1,4 +1,5 @@
 <template>
+    <router-link :to="{ name: 'Vault', params: { vaultId: vault?.id }}" class="border-none">
     <div class="relative my-2 shadow-xl shadow-black elevation rounded-lg overflow-hidden cursor-pointer">
         <img class="rounded-lg w-full hover:scale-105 duration-150" :src="vault?.img" alt="vault image"
             :title="vault?.name">
@@ -15,21 +16,22 @@
 
 
     </div>
+</router-link>
 </template>
 <script setup>
 import { Vault } from "../models/Vault.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { AppState } from "../AppState.js";
-const emit = defineEmits(['open-vault']);
+const emit = defineEmits(['setActiveVault']);
 const props = defineProps({
     vault: {
         type: Vault,
         required: true,
     },
 });
-async function openVaultPage(vaultId) {
+async function setActiveVault(vaultId) {
     // console.log(`[FROM KEEP COMPONENT] payload = ${keepId}`)
-    emit('open-vault', vaultId)
+    AppState.actVault = vaultsService.setActiveVault(vaultId)
 }
 
 </script>

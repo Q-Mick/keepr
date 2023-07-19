@@ -4,7 +4,7 @@
     <div class="w-fit mr-2 sm:mr-0">
 
       <div class="columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
-        <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" class="my-5 border border-zinc-600"
+        <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep"  class="min-h-[6rem] my-5 border border-zinc-600"
           :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }" />
       </div>
 
@@ -13,7 +13,7 @@
 
   </div>
 
-  <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" />
+  <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" :vault="myVaults" />
 </template>
 
 <script>
@@ -45,6 +45,7 @@ export default {
     return {
       actKeep: computed(() => AppState.actKeep),
       keeps: computed(() => AppState.keeps),
+      myVaults: computed(() => AppState.myVaults),
       openDetailsModal: computed(() => openDetail.value),
       openDetails,
       getKeeps,

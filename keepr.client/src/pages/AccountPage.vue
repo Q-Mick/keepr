@@ -30,10 +30,15 @@
           <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Vaults</p>
         </div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-5 border border-zinc-600">{{ vault.name }}</Vault>
+      <div v-if="vaults">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-5 border border-zinc-600">{{ vault.name }}</Vault>
+        </div>
       </div>
-      <div class="">
+      <div v-else>
+        <p>This account has no vaults</p>
+      </div>
+        <div class="">
           <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Keeps</p>
         </div>
       <div class="columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">

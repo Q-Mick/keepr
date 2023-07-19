@@ -27,11 +27,16 @@
       <div id="VaultsSection" class="flex">
         
         <div class="">
-          <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Vaults</p>
+          <p class="text-4xl sm:text-5xl font-serif font-extrabold text-start mt-5">Vaults</p>
         </div>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-5 border border-zinc-600">{{ vault.name }}</Vault>
+      <div v-if="vaults.length != 0">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-5 border border-zinc-600">{{ vault.name }}</Vault>
+        </div>
+      </div>
+      <div v-else>
+        <p class="pl-3 pt-5">This profile has no vaults</p>
       </div>
       <div class="">
           <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Keeps</p>

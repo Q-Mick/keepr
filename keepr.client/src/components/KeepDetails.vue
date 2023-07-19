@@ -56,12 +56,13 @@
 
                       <div class="flex space-x-2 text-center items-end sm:items-center">
                         <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
-                        <select class="select select-bordered select-xs w-full max-w-xs focus:outline-none">
-                          <option disabled selected>Tiny</option>
-                          <option>Tiny Apple</option>
-                          <option>Tiny Orange</option>
-                          <option>Tiny Tomato</option>
+                        <select class="py-0 select select-bordered select-xs w-full max-w-xs focus:outline-none">
+                          <option disabled selected class="font-bold">Vaults</option>
+                          <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
                         </select>
+                        <form action="">
+
+                        </form>
                         <button class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                       </div>
 
@@ -97,16 +98,20 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { AppState } from "../AppState.js";
 import { PlusIcon } from '@heroicons/vue/20/solid'
 import { Keep } from "../models/Keep.js";
-const open = ref(true)
 const emit = defineEmits(['toggle-details']);
 const props = defineProps({
   isOpen: Boolean,
   keep: {
     type: Object,
+    required: true,
+  },
+  vault: {
+    type: Array,
     required: true,
   }
 })
@@ -115,9 +120,7 @@ const toggleModal = () => {
   console.log(`[event triggered]`)
   emit('toggle-details');
 }
-  // function setIsOpen(value) {
-  //   isOpen.value = value
-  // }
+
 </script>
 
 

@@ -14,7 +14,6 @@ class VaultsService {
   async getVaultById(vaultId) {
     const res = await api.get(`api/vaults/${vaultId}`);
     let foundVault = new Vault(res.data)
-    AppState.actVault = foundVault
     logger.log(`[vault FROM GET BY ID] ---->`,foundVault)
     return foundVault
   }
