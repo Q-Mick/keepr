@@ -29,7 +29,7 @@
                       title="vault name" />
 
 
-                    <input required v-model="vaultData.img" type="text" placeholder="Vault image url" maxlength="400"
+                    <input required v-model="vaultData.img" type="url" placeholder="Vault image url" maxlength="400"
                       class="ring-[1px] ring-black input input-bordered input-sm w-full max-w-xs" title="image url" />
 
 
@@ -86,14 +86,14 @@ const toggleModal = () => {
 function createVault() {
 
   logger.log(vaultData.value)
-  if (vaultData.value.name == "" | vaultData.value.image == "" | vaultData.value.description == "") {
+  if (vaultData.value.name == "" | vaultData.value.img == "" | vaultData.value.description == "") {
     Pop.error("All fields are required to create a vault, please fill out the form appropriately.")
     return
   }
   logger.log("made it past pop")
   emit('create-vault', vaultData.value)
   emit('toggle-new-vault')
-  vaultData.value = {name:"", image:"", description:"", isPrivate: false}
+  vaultData.value = {name:"", img:"", description:"", isPrivate: false}
 }
 </script>
 

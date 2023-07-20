@@ -1,5 +1,5 @@
 <template>
-  <section id="vaultImageSection">
+  <section v-if="account" id="vaultImageSection">
     <div class="relative mx-auto max-w-7xl text-center px-10 mt-5 h-[15rem] overflow-hidden">
       <img :src="vault?.img" alt="Vault image" :title="vault?.name" class="aspect-video h-full mx-auto rounded-lg">
       <p class="absolute inset-36 text-white font-serif font-boldest text-4xl custom-text-shadow">{{ vault?.name }}</p>
@@ -17,6 +17,7 @@
           :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }" :showCreatorPic="false" />
       </div>
   </section>
+  <div v-else>Loading...</div>
   <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" :vault="myVaults" :vaultDisplay="true" />
 </template>
 
@@ -43,6 +44,7 @@ export default {
     onMounted(() => setActiveVault())
     async function setActiveVault() {
       try {
+        debugger
         const vaultId = route.params.vaultId
         await vaultsService.setActiveVault(vaultId);
         if (AppState.actVault.isPrivate == true) {
@@ -50,12 +52,13 @@ export default {
             return
           } else {
             Pop.error("This vault is private and not yours. Stop being nosy.")
-            router.push({name: 'Home'})
+            
           }
         }
       }
       catch (error) {
         logger.log(error.message);
+        router.push({name: 'Home'})
       }
     }
     async function deleteVault(vaultId) {
@@ -78,7 +81,8 @@ export default {
       openDetails,
       vault: computed(() => AppState.actVault),
       keeps: computed(() => AppState.vaultKeeps),
-      actKeep: computed(() => AppState.activeVaultKeep,),
+      actKeep: computed(() => AppState.activeVaultKeep),
+      account: computed(() => AppState.account),
       myVaults: computed(() => AppState.myVaults),
       async setActiveVaultKeep(keep) {
         logger.log(`[FUNCTION - OPEN DETAILS MODAL] Payload --->`, keep.vaultKeepId);

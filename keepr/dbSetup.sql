@@ -16,7 +16,7 @@ ADD
 ALTER TABLE keeps
 ADD
     COLUMN Kept INT NOT NULL DEFAULT 0;
-    
+
 CREATE TABLE
     IF NOT EXISTS keeps(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -79,7 +79,7 @@ CREATE TABLE
         keepId INT NOT NULL,
         FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
         FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE,
-        UNIQUE(vaultId)
+        UNIQUE(keepId)
     ) default charset utf8 COMMENT '';
 
 DELETE FROM vaultkeeps WHERE id = 27 LIMIT 1;
