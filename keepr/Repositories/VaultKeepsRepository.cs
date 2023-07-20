@@ -27,7 +27,7 @@ public class VaultKeepsRepository
         SELECT
         vk.*
         FROM vaultkeeps vk
-        WHERE vk.id = @vaultKeepId
+        WHERE id = @vaultKeepId
         ;";
         VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).FirstOrDefault();
         return vaultKeep;
@@ -53,9 +53,9 @@ public class VaultKeepsRepository
       FROM vaultkeeps vks
       JOIN keeps keep ON keep.id = vks.KeepId
       JOIN accounts act ON act.id = keep.creatorId
-      WHERE vks.VaultId = @VaultId
+      WHERE vks.VaultId = @vaultId
       ;";
-        List<VaultKeepItem> keeps = _db.Query<VaultKeepItem, VaultKeepItem, Account, VaultKeepItem>(sql, (vaultKeep, keep, account) =>
+        List<VaultKeepItem> keeps = _db.Query<VaultKeep, VaultKeepItem, Account, VaultKeepItem>(sql, (vaultKeep, keep, account) =>
         {
             keep.VaultKeepId = vaultKeep.Id;
             keep.Creator = account;

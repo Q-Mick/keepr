@@ -19,36 +19,48 @@
 
               <!-- NOTE MODAL FORM START-->
               <!-- SECTION MODAL FORM GUTS-->
-              <section id="modal-guts">
+              <section id="modal-guts" class="bg-zinc-100">
                 <div class="flex flex-col min-h-full p-3">
                   <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
                   <div class="flex flex-col space-y-5">
 
                     <input required v-model="vaultData.name" maxlength="20" id="Vault name" type="text"
-                      placeholder="Vault name" class="min-w-[20rem] input input-bordered input-sm w-full max-w-xs"
+                      placeholder="Vault name" class="ring-[1px] ring-black min-w-[20rem] input input-bordered input-sm w-full max-w-xs"
                       title="vault name" />
+
+
                     <input required v-model="vaultData.img" type="text" placeholder="Vault image url" maxlength="400"
-                      class="input input-bordered input-sm w-full max-w-xs" title="image url" />
+                      class="ring-[1px] ring-black input input-bordered input-sm w-full max-w-xs" title="image url" />
+
+
                     <textarea required v-model="vaultData.description" maxlength="100" placeholder="Vault description"
-                      class="min-h-[7rem] p-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs"
+                      class="ring-[1px] ring-black min-h-[7rem] pl-3 py-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs"
                       title="description"></textarea>
-                    <div class="form-control bg-slate-100">
-                    <label class="label cursor-pointer">
-                      <span class="label-text">is the Vault private?</span>
-                      <input id="isPrivate" type="checkbox" checked="checked" class="checkbox border border-black indeterminate:bg-gray-300 valid:border-green-500" />
-                    </label>
+
+
+                    <div class="flex flex-col flex-grow-0">
+                      <div class="flex flex-col">
+                        <p class="text-[10px] p-0 my-0 py-1 mr-1 text-end">Private vaults can only be seen by you.</p>
+                        <div class="inline-flex items-end justify-end">
+                              <input v-model="vaultData.isPrivate" id="isPrivate" type="checkbox" title="private vault selector" class="h-5 w-5  border-black text-black  bg-slate-200 checkbox rounded-none default:ring-2 focus:ring-0" />
+                    
+                     
+                          <span class="label-text ml-0.5">Make Vault Private?</span>
+                          
+                        </div>
+                        <button @click="createVault()" class="btn btn-neutral btn-sm ml-auto w-[47%] py-1 my-1" title="Create Vault">Create Vault</button>
+                      </div>
+
+                    </div>
                   </div>
-                  <!-- <input v-model="vaultData.isPrivate" type="checkbox" checked="false" class="checkbox" title="is Private?" /> -->
-                  <button @click="createVault()" class="btn btn-neutral btn-sm">create</button>
                 </div>
+
+              </section>
+              <!-- !SECTION end modal guts -->
+
+            </DialogPanel>
+          </TransitionChild>
         </div>
-
-        </section>
-        <!-- !SECTION end modal guts -->
-
-        </DialogPanel>
-        </TransitionChild>
-      </div>
       </div>
     </Dialog>
   </TransitionRoot>
@@ -58,29 +70,34 @@
 <script setup>
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { PlusIcon } from '@heroicons/vue/20/solid'
-import { Keep } from "../models/Keep.js";
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
 
 const emit = defineEmits(['toggle-new-vault', 'create-vault']);
 const props = defineProps({
   isOpen: Boolean,
 
 })
-const vaultData = ref({ name: "", img: "", description: ""})
+const vaultData = ref({ name: "", img: "", description: "", isPrivate: false })
 const toggleModal = () => {
   console.log(`[event triggered]`)
   emit('toggle-new-vault');
 }
 function createVault() {
 
-  logger.log(vaultData.name)
+  logger.log(vaultData.value)
   if (vaultData.value.name == "" | vaultData.value.image == "" | vaultData.value.description == "") {
     Pop.error("All fields are required to create a vault, please fill out the form appropriately.")
     return
   }
+  logger.log("made it past pop")
   emit('create-vault', vaultData.value)
+  emit('toggle-new-vault')
 }
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+
+</style>

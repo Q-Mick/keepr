@@ -21,15 +21,23 @@
 
               <!-- NOTE MODAL FORM START-->
               <!-- SECTION MODAL FORM GUTS-->
-              <section id="modal-guts">
+              <section id="modal-guts" class="bg-zinc-100">
                 <div class="flex flex-col min-h-full p-3">
                   <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
                   <div class="flex flex-col space-y-5">
 
-                    <input required v-model="keepData.name" maxlength="20" id="title" type="text" placeholder="keep title" class="min-w-[20rem] input input-bordered input-sm w-full max-w-xs" />
-                    <input required v-model="keepData.img" type="text" placeholder="keep image url" maxlength="400" class="input input-bordered input-sm w-full max-w-xs" />
-                    <textarea required v-model="keepData.description" placeholder="Keep description" class=" min-h-[7rem] p-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
-                    <button @click="createKeep()" class="btn btn-neutral btn-sm">create</button>
+                    <input required v-model="keepData.name" title="Keep title" maxlength="20" id="title" type="text" placeholder="keep title" class="ring-[1px] ring-black min-w-[20rem] input input-bordered input-sm w-full max-w-xs" />
+
+
+                    <input required v-model="keepData.img" type="text" placeholder="keep image url" maxlength="400" class="ring-[1px] ring-black input input-bordered input-sm w-full max-w-xs" title="Image URL" />
+
+
+                    <textarea required v-model="keepData.description" placeholder="Keep description" class="ring-[1px] ring-black min-h-[7rem] pl-3 py-1 text-sm textarea textarea-bordered textarea-lg w-full max-w-xs"
+                      title="description" ></textarea>
+
+<div class="inline-flex ml-auto">
+  <button @click="createKeep()" class="btn btn-neutral btn-sm" title="Create Keep">create</button>
+</div>
                   </div>
                 </div>
                 
@@ -48,8 +56,6 @@
 <script setup>
 import { ref } from 'vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { PlusIcon } from '@heroicons/vue/20/solid'
-import { Keep } from "../models/Keep.js";
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 

@@ -11,7 +11,7 @@
 
 
 <script>
-import { onMounted, ref, watchEffect} from "vue";
+import { onMounted, popScopeId, ref, watchEffect} from "vue";
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js'
@@ -20,6 +20,8 @@ import { logger } from "../utils/Logger.js";
 import { useRoute } from 'vue-router';
 import Keep from "../components/Keep.vue";
 import Vault from "../components/Vault.vue";
+import Pop from "../utils/Pop.js";
+import { router } from "../router.js";
 
 export default {
   setup(){
@@ -30,15 +32,37 @@ export default {
       try {
         const vaultId = route.params.vaultId
         await vaultsService.setActiveVault(vaultId);
+        if (AppState.actVault.isPrivate == true) {
+          if (AppState.user.id == AppState.actVault.creatorId) {
+            return
+          } else {
+            Pop.error("This vault is private and not yours. Stop being nosy.")
+            router.push('Home')
+          }
+        }
       }
       catch (error) {
         logger.log(error.message);
       }
     }
+    async function deleteVault(vaultId) {
+    try {
+      if (await Pop.confirm('Are you sure you want to delete the vault?')){
+        await vaultsService.deleteKeep(vaultId)
+        emit('toggle-details');
+      } else {
+        
+        return
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
     return {
       vault: computed(() => AppState.actVault),
     }
   }
+
 }
 </script>
 

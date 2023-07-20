@@ -16,6 +16,9 @@
             </div>
           </div>
           <!-- name and vault / keep count v -->
+          <div class="flex justify-end">
+            <button @click="openSlide" class="btn btn-xs btn-neutral mt-1">Edit</button>
+          </div>
         </div>
           <p class="text-5xl font-serif font-extrabold text-center mt-9">{{ account?.name }}</p>
           <p></p>
@@ -30,25 +33,26 @@
           <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Vaults</p>
         </div>
       </div>
-      <div v-if="vaults">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-5 border border-zinc-600">{{ vault.name }}</Vault>
+      <div v-if="vaults.length != 0">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-1">
+          <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-2 border min-h-full border-zinc-600">{{ vault.name }}</Vault>
         </div>
       </div>
       <div v-else>
-        <p>This account has no vaults</p>
+        <p class="pl-3 pt-5">You have no vaults yet.</p>
       </div>
         <div class="">
           <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Keeps</p>
         </div>
-      <div class="columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
+      <div class="relative columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
         <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" :show-creator-pic="false" class="my-5 border border-zinc-600"
-          :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }" />
+          :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }"></Keep>
       </div>
     </div>
       <div class="w-3 sm:w-[20%]"></div>
     </div>
-    <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" />
+    <KeepDetails @toggle-details="closeModal" v-model:vault="myVaults" v-model:isOpen="openDetails" v-model:keep="actKeep" />
+    <AccountSlide v-model:open="open" v-bind:account="account" @close-slide="closeSlide" @submit-account="handleSubmit" />
 </template>
 
 <script>
@@ -56,19 +60,24 @@ import { onMounted, ref, watchEffect} from "vue";
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepDetails from "../components/KeepDetails.vue";
+import AccountSlide from "../components/AccountSlide.vue";
+import { accountService } from "../services/AccountService.js";
 import { keepsService } from '../services/KeepsService.js'
 import { vaultsService } from "../services/VaultsService.js";
 import { logger } from "../utils/Logger.js";
 import Keep from "../components/Keep.vue";
 import Vault from "../components/Vault.vue";
+import Pop from "../utils/Pop.js";
 export default {
   components: {
+    AccountSlide,
     Keep,
     Vault,
     KeepDetails,
   },
   setup() {
     onMounted(() => getKeeps())
+    const openAcct = ref(false)
     const openDetails = ref(false)
     async function getKeeps() {
       try {
@@ -78,7 +87,30 @@ export default {
         logger.log(error.message);
       }
     }
+    async function handleSubmit(data) {
+      // Handle the submitted account data from the child component
+      logger.log('Submitted account:', data);
+      try {
+        Pop.toast('updating account')
+        await accountService.editAccount(data)
+      } catch (error) {
+        Pop.error(error, '[Editing Account]')
+      }
+    }
+    function openSlide(){
+      openAcct.value = true; // Open the slide
+    };
+    function closeSlide(){
+      openAcct.value = false; // Close the slide
+    };
     return {
+      handleSubmit,
+      closeSlide,
+      openSlide,
+      openAcct,
+      myVaults: computed(() => AppState.myVaults),
+      open: computed(() => openAcct.value),
+      user: computed(() => AppState.user),
       openDetails: computed(() => openDetails.value),
       account:computed(() => AppState.account),
       keeps:computed(() => AppState.myKeeps),
@@ -91,7 +123,6 @@ export default {
 },
         closeModal() {
         logger.log(`[CLOSE MODAL EVENT RECEIVED]`);
-
         openDetails.value = false
   
 }

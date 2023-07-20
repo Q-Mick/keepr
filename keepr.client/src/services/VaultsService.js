@@ -15,18 +15,26 @@ class VaultsService {
     const res = await api.get(`api/vaults/${vaultId}`);
     let foundVault = new Vault(res.data)
     logger.log(`[vault FROM GET BY ID] ---->`,foundVault)
+    AppState.vaultKeeps = await this.getKeepsInVault(vaultId)
     return foundVault
   }
-
+  async getKeepsInVault(vaultId) {
+    const res = await api.get(`api/vaults/${vaultId}/keeps`);
+    AppState.vaultKeeps = res.data.map((vk) => new Keep (vk))
+    logger.log(`[VAULT KEEPS FOUND] ---->`, AppState.vaultKeeps)
+    
+  }
   async setActiveVault(vaultId) {
     AppState.actVault = await this.getVaultById(vaultId)
     logger.log(`[ACTIVE Vault SET] - ID ${AppState.actVault.id} - Name:${AppState.actVault.name}`)
+    
+    
   }
   async createVault(vaultData) {
     const res = await api.post('api/vaults', vaultData)
-    const newVault = new vault(res.data)
+    const newVault = new Vault(res.data)
     logger.log(newVault)
-    AppState.Vaults.unshift(newVault)
+    AppState.vaults.unshift(newVault)
     Pop.success(`Vault created!`)
     return newVault
   }

@@ -1,7 +1,7 @@
 <template>
     <router-link :to="{ name: 'Vault', params: { vaultId: vault.id }}" class="border-none">
     <div class="relative my-2 shadow-xl shadow-black elevation rounded-lg overflow-hidden cursor-pointer">
-        <img class="rounded-lg w-full hover:scale-105 duration-150" :src="vault?.img" alt="vault image"
+        <img class="object-cover rounded-lg w-full hover:scale-105 duration-150 min-w-[7.5rem] max-w-[13.5rem] min-h-[7.5rem] max-h-[7.5rem]" :src="vault?.img" alt="vault image"
             :title="vault?.name">
 
         <h2 class="pl-2 pb-1 m-0 absolute left-0 bottom-0 text-white text-lg custom-text-shadow font-semibold font-serif">{{

@@ -30,16 +30,18 @@
                     <div class="pb-1 sm:pb-6">
                       <div>
                         <div class="relative h-40 sm:h-56">
-                          <img class="absolute h-full w-full object-cover" :src="account.picture" alt="" />
+                          <img class="absolute h-full w-full object-cover" :src="account.coverImg" alt="" />
+                          <div class="avatar absolute bottom-[-2rem] right-4 rounded-full border border-white elevation">
+                            <div class="w-[5rem] rounded-full">
+                              <img :src="account.picture" alt="" title="Account Picture">
+                            </div>
+                          </div>
                         </div>
                         <div class="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
                           <div class="sm:flex-1">
                             <div>
                               <div class="flex items-center">
                                 <h3 class="text-xl font-bold text-gray-900 sm:text-2xl">{{ account.name }}</h3>
-                                <span class="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
-                                  <span class="sr-only">Online</span>
-                                </span>
                               </div>
                               <p class="text-sm text-gray-500">{{ account.email }}</p>
                             </div>
@@ -50,12 +52,7 @@
                     </div>
                     <div class="px-4 pb-5 pt-5 sm:px-0 sm:pt-0">
                       <dl class="space-y-8 px-4 sm:space-y-6 sm:px-6">
-                        <div>
-                          <dt class="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">Bio</dt>
-                          <dd class="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            <p>{{ account.bio }}</p>
-                          </dd>
-                        </div>
+
                         <div>
                           <!-- NOTE edit account section -->
                           <form class="" @submit.prevent="handleSubmit">
@@ -67,13 +64,9 @@
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 placeholder="Jane Smith" />
                             </div>
-                            <!-- <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Name:</span>
-              <input name="name" class="input-text form-control" placeholder="Name" type="text" required
-                v-model="editable.name">
-            </div> -->
 
-                            <div class="relative">
+
+                            <div class="relative mb-3">
                               <label for="picture"
                                 class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">Picture</label>
                               <input v-model="editable.picture" type="text" maxlength="125" name="name" id="name"
@@ -81,13 +74,14 @@
                                 placeholder="Jane Smith" />
                             </div>
 
-                            <!-- <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Profile Banner:</span>
-              <input name="cover-img" class="input-text form-control" placeholder="Cover image" type="url" required
-                v-model="editable.coverImg">
-            </div> -->
-
-
+                            <div class="relative">
+                              <label for="coverImg"
+                                class="absolute -top-2 left-2 inline-block bg-white px-1 text-xs font-medium text-gray-900">Cover
+                                image</label>
+                              <input v-model="editable.coverImg" type="text" maxlength="125" name="name" id="name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                placeholder="Jane Smith" />
+                            </div>
 
                             <div class="text-end">
                               <button type="submit"

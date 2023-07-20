@@ -40,7 +40,10 @@ class KeepsService {
     const res = await api.delete(`api/keeps/${keepId}`)
     logger.log('[KEEP DELETED ]', res.data)
     const keepToDelete = AppState.myKeeps.findIndex(v => v.id == keepId)
+    AppState.keeps.splice(keepToDelete, 1)
     AppState.myKeeps.splice(keepToDelete, 1)
+    this.getKeeps()
+    return res.data
   }
   }
 export const keepsService = new KeepsService();

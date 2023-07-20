@@ -43,7 +43,7 @@
   </div>
 
   <NewKeepModal @create-keep="createNewKeep" @toggle-new-keep="toggleCreateKeep" v-model:isOpen="openNewKeep" />
-  <NewVaultModal @toggle-new-vault="toggleCreateVault" v-model:isOpen="openNewVault" />
+  <NewVaultModal @create-vault="createNewVault" @toggle-new-vault="toggleCreateVault" v-model:isOpen="openNewVault" />
 </template>
 
 <script>
@@ -73,20 +73,25 @@ export default {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       toggleCreateKeep() {
-        logger.log(`[TOGGLE NEW KEEP EVENT RECEIVED]`);
+        // logger.log(`[TOGGLE NEW KEEP EVENT RECEIVED]`);
 
         openNewKeep.value = !openNewKeep.value
 
       },
       toggleCreateVault() {
-        logger.log(`[TOGGLE NEW VAULT EVENT RECEIVED]`);
+        // logger.log(`[TOGGLE NEW VAULT EVENT RECEIVED]`);
 
         openNewVault.value = !openNewVault.value
       },
       createNewKeep(keepData){
        const newKeep = keepsService.createKeep(keepData)
-       logger.log("[KEEP CREATED] -", newKeep)
+      //  logger.log("[KEEP CREATED] -", newKeep)
        openNewKeep.value = false
+      },
+      createNewVault(vaultData){
+        openNewVault.value = false
+       const newVault = vaultsService.createVault(vaultData)
+       logger.log("[VAULT CREATED] -", newVault)
       }
     }
   },

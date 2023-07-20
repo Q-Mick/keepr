@@ -46,7 +46,7 @@ public class VaultKeepsService
   {
 
           List<VaultKeepItem> vaultKeeps = _vkr.GetKeepsInVault(vaultId);
-         if (vaultKeeps == null) throw new Exception("No vaultKeep found");
+       if (vaultKeeps == null) throw new Exception("No vaultKeep found");
         return vaultKeeps;
   }
 }
