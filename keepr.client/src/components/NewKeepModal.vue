@@ -77,6 +77,8 @@ function createKeep(){
     return
   }
   emit('create-keep', keepData.value)
+ keepData.value = {name: "", img: "", description:""}
+
 }
 </script>
 

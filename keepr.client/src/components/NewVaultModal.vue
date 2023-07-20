@@ -93,6 +93,7 @@ function createVault() {
   logger.log("made it past pop")
   emit('create-vault', vaultData.value)
   emit('toggle-new-vault')
+  vaultData.value = {name:"", image:"", description:""}
 }
 </script>
 
