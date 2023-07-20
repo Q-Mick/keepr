@@ -33,7 +33,7 @@ public class VaultKeepsService
   internal void DeleteVaultKeep(int vaultKeepId, string userId)
   {
         VaultKeep vaultKeep = GetById(vaultKeepId);
-        if (vaultKeep.CreatorId != userId) throw new Exception("Unauthorized to remove this vaultKeep!");
+        if (vaultKeep?.CreatorId != userId) throw new Exception("Unauthorized to remove this vaultKeep!");
         int rows = _vkr.DeleteVaultKeep(vaultKeepId);
         Keep keep = _keepsService.GetById(vaultKeep.KeepId);
         keep.Kept--;

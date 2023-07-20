@@ -13,7 +13,7 @@
 
   </div>
 
-  <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" :vault="myVaults" />
+  <KeepDetails @toggle-details="closeModal" v-model:isOpen="openDetails" v-model:keep="actKeep" :vault="myVaults" :vaultDisplay="false" />
 </template>
 
 <script>

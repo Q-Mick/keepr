@@ -34,19 +34,25 @@
         </div>
       </div>
       <div v-if="vaults.length != 0">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-1">
+        <div class="relative grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-1">
           <Vault v-for="vault in vaults" :key="vault.id" :vault="vault" class="my-2 border min-h-full border-zinc-600">{{ vault.name }}</Vault>
+
         </div>
       </div>
       <div v-else>
         <p class="pl-3 pt-5">You have no vaults yet.</p>
       </div>
-        <div class="">
-          <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Keeps</p>
-        </div>
-      <div class="relative columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
-        <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" :show-creator-pic="false" class="my-5 border border-zinc-600"
+      <div >
+        <p class="text-4xl sm:text-5xl  font-serif font-extrabold text-start mt-5">Keeps</p>
+      </div>
+      <div v-if="keeps.length != 0">
+        <div class="relative columns-2 sm:columns-4 gap-3 px-1 sm:pr-0 sm:gap-8 pt-5 mb-5">
+          <Keep @click="setActiveKeep(keep.id)" v-for="keep in keeps" :key="keep.id" :keep="keep" :show-creator-pic="false" class="my-5 border border-zinc-600"
           :style="{ marginTop: keep.id === keeps[0].id ? '0' : 'auto' }"></Keep>
+        </div>
+      </div>
+      <div v-else>
+        <p class="pl-3 pt-5">You have no Keeps yet.</p>
       </div>
     </div>
       <div class="w-3 sm:w-[20%]"></div>

@@ -22,7 +22,7 @@
                 <!-- SECTION left Modal Pane -->
                 <div id="keep-image" class="sm:w-1/2 relative">
                   <button v-if="user.id == keep.creatorId" @click="deleteKeep(keep.id)" title="Delete Keep"
-                    class="absolute top-0 right-0 w-20 m-2 btn btn-error text-[10px] btn-xs focus:outline-none sm:btn-small">Delete
+                    class="absolute top-0 right-0 m-2 btn btn-error text-[10px] btn-xs focus:outline-none sm:btn-small">Delete
                     keep</button>
                   <div class="aspect-square w-full">
                     <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg"
@@ -36,12 +36,12 @@
                     <div id="top items" class="pt-0 sm:pt-5">
 
                       <div class="flex space-x-3 mt-1 mb-auto grow">
-                        <i class="mdi mdi-eye">{{ keep.views }}</i>
+                        <i class="mdi mdi-eye" title="viewed">{{ keep.views }}</i>
                         <!-- NOTE LOGO NOT LEFT PICTURE -->
                         <div class="flex space-x-1">
 
                           <img class="aspect-square w-5 h-5" src="../assets/img/K-Logo.png" alt="keepr logo">
-                          <i class=" ">{{ keep.kept }}</i>
+                          <i class="" title="Kept">{{ keep.kept }}</i>
                         </div>
                       </div>
 
@@ -50,26 +50,24 @@
                     <div id="middle-items" class="p-0 sm:p-10">
 
                       <p class="text-[35px] font-serif text-center font-bold">{{ keep.name }}</p>
-                      <p class="text-left">{{ keep.description }}</p>
+                      <p class="text-left line-clamp-6">{{ keep.description }}</p>
 
                     </div>
                     <!-- BOTTOM -->
-                    <div id="bottom-items"
+                    <div id="bottom-items"       
                       class="flex flex-row-reverse sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4 ">
-
-                      <div class="flex space-x-2 text-center items-end sm:items-center">
+                    
+                      <div v-if="!vaultDisplay" class="flex space-x-2 text-center items-end sm:items-center">
                         <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
-                        <select v-model="selectedVault" class="py-0 bg-slate-100 select select-xs w-full max-w-[7rem] focus:outline-none focus:border-none focus:ring-neutral">
+                        <select v-model="selectedVault" class="py-0 bg-slate-100 select select-xs w-full max-w-[6.5rem] focus:outline-none focus:border-none focus:ring-neutral">
                           <option disabled selected value="0" class="font-bold">Vaults</option>
                           <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
                         </select>
-                        <form action="">
-
-                        </form>
 
                         <button @click="addKeepToVault()" class="btn btn-neutral btn-xs sm:btn-small">Save</button>
-
-
+                      </div>
+                      <div v-else class="flex items-center">
+                        <button @click="removeKeepFromVault(keep.vaultKeepId)" title="Remove keep from vault" class="border-b border-zinc-700 m-0 p-0"><i class="mdi mdi-cancel">Remove</i></button>
                       </div>
 
                       <div class="flex flex-col-reverse sm:flex-row text-center items-start sm:items-center">
@@ -113,12 +111,13 @@ import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { PlusIcon } from '@heroicons/vue/20/solid'
 import { Keep } from "../models/Keep.js";
-const user = computed(() => AppState.user);
+const user = computed(() => AppState.account);
 const selectedVault = ref('0')
 const vaults = ref(props.vault);
 const vaultKeepData = { keepId: "", vaultId: "" }
-const emit = defineEmits(['toggle-details']);
+const emit = defineEmits(['toggle-details', 'remove-keep']);
 const props = defineProps({
+  vaultDisplay:{type: Boolean},
   isOpen: Boolean,
   keep: {
     type: Object,
@@ -137,10 +136,24 @@ async function addKeepToVault() {
   // AppState.vaultKeeps.push(AppState.actKeep)
   return newVaultKeep
 }
+
 async function deleteKeep(keepId) {
   try {
     if (await Pop.confirm('Are you sure you want to delete the keep?')) {
       await keepsService.deleteKeep(keepId)
+      emit('toggle-details');
+    } else {
+
+      return
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+async function removeKeepFromVault(vaultKeepId) {
+  try {
+    if (await Pop.confirm('Are you sure you want to remove the keep from the vault?')) {
+      await vaultKeepsService.deleteKeepFromVault(vaultKeepId)
       emit('toggle-details');
     } else {
 

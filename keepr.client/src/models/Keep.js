@@ -10,7 +10,7 @@ this.img = data.img
 this.views = data.views
 this.kept = data.kept
 this.creator = new Profile(data.creator)
-this.vaultKeepID = data.vaultKeepID
+this.vaultKeepId = data.vaultKeepId
 }
 
 }

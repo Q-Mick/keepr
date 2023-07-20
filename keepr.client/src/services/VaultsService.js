@@ -9,24 +9,27 @@ class VaultsService {
   async getVault() {
     const res = await api.get("/api/vaults");
     AppState.vaults = res.data.map((v) => new Vault(v));
-    logger.log("[Vault]", AppState.vaults)
+    // logger.log("[Vault]", AppState.vaults)
   }
   async getVaultById(vaultId) {
     const res = await api.get(`api/vaults/${vaultId}`);
     let foundVault = new Vault(res.data)
     logger.log(`[vault FROM GET BY ID] ---->`,foundVault)
-    AppState.vaultKeeps = await this.getKeepsInVault(vaultId)
+    
     return foundVault
   }
   async getKeepsInVault(vaultId) {
     const res = await api.get(`api/vaults/${vaultId}/keeps`);
-    AppState.vaultKeeps = res.data.map((vk) => new Keep (vk))
+    const foundVaultKeeps = res.data.map((vk) => new Keep (vk))
+    logger.log(res.data)
+    AppState.vaultKeeps = foundVaultKeeps
     logger.log(`[VAULT KEEPS FOUND] ---->`, AppState.vaultKeeps)
-    
+    return foundVaultKeeps
   }
   async setActiveVault(vaultId) {
     AppState.actVault = await this.getVaultById(vaultId)
-    logger.log(`[ACTIVE Vault SET] - ID ${AppState.actVault.id} - Name:${AppState.actVault.name}`)
+    AppState.vaultKeeps = await this.getKeepsInVault(vaultId)
+    // logger.log(`[ACTIVE Vault SET] - ID ${AppState.actVault.id} - Name:${AppState.actVault.name}`)
     
     
   }
@@ -48,6 +51,7 @@ class VaultsService {
     logger.log('[vault DELETED ]', res.data)
     const vaultToDelete = AppState.myVaults.findIndex(v => v.id == vaultId)
     AppState.myVaults.splice(vaultToDelete, 1)
+    return vaultToDelete
   }
   
 }

@@ -1,11 +1,12 @@
 <template>
     <router-link :to="{ name: 'Vault', params: { vaultId: vault.id }}" class="border-none">
     <div class="relative my-2 shadow-xl shadow-black elevation rounded-lg overflow-hidden cursor-pointer">
-        <img class="object-cover rounded-lg w-full hover:scale-105 duration-150 min-w-[7.5rem] max-w-[13.5rem] min-h-[7.5rem] max-h-[7.5rem]" :src="vault?.img" alt="vault image"
+        <img class="object-cover rounded-lg w-full hover:scale-105 duration-150 min-w-[7.5rem]  min-h-[7.5rem] max-h-[7.5rem]" :src="vault?.img" alt="vault image"
             :title="vault?.name">
 
         <h2 class="pl-2 pb-1 m-0 absolute left-0 bottom-0 text-white text-lg custom-text-shadow font-semibold font-serif">{{
             vault?.name }}</h2>
+            
 <div v-if="vault?.isPrivate" class="absolute right-0 bottom-0 pr-2 pb-[3px]">
   <div class="w-6 rounded-full border border-black avatar-elevation flex justify-center items-center">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" title="Vault is private" class="rounded-full bg-white w-6 h-6">
@@ -19,9 +20,11 @@
 </router-link>
 </template>
 <script setup>
+import { computed } from "vue";
 import { Vault } from "../models/Vault.js";
 import { vaultsService } from "../services/VaultsService.js";
 import { AppState } from "../AppState.js";
+const account = computed(() => AppState.account);
 const emit = defineEmits(['setActiveVault']);
 const props = defineProps({
     vault: {
@@ -44,6 +47,9 @@ async function setActiveVault(vaultId) {
 
 .elevation {
     box-shadow: 10px 15px 6px rgba(0, 0, 0, .6);
+}
+.elevation-b {
+    box-shadow: 2px 5px 6px rgba(0, 0, 0, .6);
 }
 
 .avatar-elevation {

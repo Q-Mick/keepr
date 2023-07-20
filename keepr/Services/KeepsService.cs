@@ -44,7 +44,7 @@ public class KeepsService
     originalKeep.Name = originalKeep.Name.Length > 0 ? keepData.Name : originalKeep.Name;
     originalKeep.Img = originalKeep.Img.Length > 0 ? keepData.Img : originalKeep.Img;
     originalKeep.Description = originalKeep.Description.Length > 0 ? keepData.Description : originalKeep.Description;
-    originalKeep.Views = originalKeep.Views > 0 ? keepData.Views : originalKeep.Views;
+    originalKeep.Views = Math.Abs(originalKeep.Views - keepData.Views) > 1 ? originalKeep.Views : keepData.Views;
     _kr.UpdateKeep(originalKeep);
 
     return originalKeep;
