@@ -61,12 +61,12 @@
                         <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
                       
 
-                          <select v-model="selectedVault" class="py-0 bg-slate-100 select select-xs w-full max-w-[6.5rem] focus:outline-none focus:border-none focus:ring-neutral">
+                          <select v-model="selectedVault" :disabled="!loggedIn" class="py-0 bg-slate-100 select select-xs w-full max-w-[6.5rem] focus:outline-none focus:border-none focus:ring-neutral">
                             <option disabled selected value="0" class="font-bold">Vaults</option>
                             <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
                           </select>
                           
-                          <button @click="addKeepToVault()" class="btn btn-neutral btn-xs sm:btn-small">Save</button>
+                          <button @click="addKeepToVault()" :disabled="!loggedIn" class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                         </div>
                     
                       <div v-else-if="user.id == keep.creatorId" class="flex items-center">

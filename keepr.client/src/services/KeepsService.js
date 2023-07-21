@@ -33,6 +33,7 @@ class KeepsService {
     const newKeep = new Keep(res.data);
     // logger.log(newKeep)
     AppState.keeps.unshift(newKeep);
+    AppState.myKeeps.unshift(newKeep);
     Pop.success(`Keep created!`);
     return newKeep;
   }

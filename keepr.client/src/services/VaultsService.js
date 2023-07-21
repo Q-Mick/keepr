@@ -38,6 +38,7 @@ class VaultsService {
     const newVault = new Vault(res.data)
     logger.log(newVault)
     AppState.vaults.unshift(newVault)
+    AppState.myVaults.unshift(newVault)
     Pop.success(`Vault created!`)
     return newVault
   }
