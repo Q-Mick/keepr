@@ -25,7 +25,7 @@
                 <div class="flex flex-col min-h-full p-3">
                   <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
                   <div class="flex flex-col space-y-5">
-                    <form  @submit="createKeep()" action="">
+                    <form class="flex flex-col space-y-5"  @submit="createKeep()" action="">
 
                     <input required v-model="keepData.name" title="Keep title" maxlength="20" id="title" type="text" placeholder="keep title" class="ring-[1px] ring-black min-w-[20rem] input input-bordered input-sm w-full max-w-xs" />
 

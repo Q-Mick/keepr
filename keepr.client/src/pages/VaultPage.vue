@@ -44,6 +44,7 @@ export default {
     onMounted(() => setActiveVault())
     async function setActiveVault() {
       try {
+        debugger
         const vaultId = route.params.vaultId
         await vaultsService.setActiveVault(vaultId);
         if (AppState.actVault.isPrivate == true) {
@@ -72,7 +73,7 @@ export default {
         return
       }
     } catch (error) {
-      console.error(error);
+      Pop.error(error);
     }
   }
     return {

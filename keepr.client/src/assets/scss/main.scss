@@ -2,7 +2,7 @@
 // @import "bootstrap";
 @import "./_overrides.scss";
 @import "./_utilities.scss";
-// @import "./loaders.scss";
+@import "./loaders.scss";
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -39,7 +39,7 @@ select {
   }
 }
 
-form:invalid button[type="submit"] {
-  filter: grayscale(1);
-  pointer-events: none;
-}
+// form:invalid button[type="submit"] {
+//   filter: grayscale(1);
+//   pointer-events: none;
+// }

@@ -21,11 +21,16 @@
               <!-- SECTION MODAL FORM GUTS-->
               <section id="modal-guts" class="bg-zinc-100">
                 <div class="flex flex-col min-h-full p-3">
-                  <p class="text-zinc-500 text-lg font-bold text-start mb-5">Add your keep</p>
+                  <p class="text-zinc-500 text-lg font-bold text-start mb-5">Create your vault</p>
                   <div class="flex flex-col space-y-5">
 
+
+                    <form action="" @submit="createVault()" class="flex flex-col space-y-5">
+
+                    
                     <input required v-model="vaultData.name" maxlength="20" id="Vault name" type="text"
-                      placeholder="Vault name" class="ring-[1px] ring-black min-w-[20rem] input input-bordered input-sm w-full max-w-xs"
+                      placeholder="Vault name"
+                      class="ring-[1px] ring-black min-w-[20rem] input input-bordered input-sm w-full max-w-xs"
                       title="vault name" />
 
 
@@ -42,16 +47,19 @@
                       <div class="flex flex-col">
                         <p class="text-[10px] p-0 my-0 py-1 mr-1 text-end">Private vaults can only be seen by you.</p>
                         <div class="inline-flex items-end justify-end">
-                              <input v-model="vaultData.isPrivate" id="isPrivate" type="checkbox" title="private vault selector" class="h-5 w-5  border-black text-black  bg-slate-200 checkbox rounded-none default:ring-2 focus:ring-0" />
-                    
-                     
-                          <span class="label-text ml-0.5">Make Vault Private?</span>
-                          
-                        </div>
-                        <button @click="createVault()" class="btn btn-neutral btn-sm ml-auto w-[47%] py-1 my-1" title="Create Vault">Create Vault</button>
-                      </div>
+                          <input v-model="vaultData.isPrivate" id="isPrivate" type="checkbox"
+                            title="private vault selector"
+                            class="h-5 w-5  border-black text-black  bg-slate-200 checkbox rounded-none default:ring-2 focus:ring-0" />
 
+
+                          <span class="label-text ml-0.5">Make Vault Private?</span>
+
+                        </div>
+                        <button type="submit" class="btn btn-neutral btn-sm ml-auto w-[47%] py-1 my-1"
+                          title="Create Vault">Create Vault</button>
+                      </div>
                     </div>
+                  </form>
                   </div>
                 </div>
 
@@ -93,12 +101,9 @@ function createVault() {
   logger.log("made it past pop")
   emit('create-vault', vaultData.value)
   emit('toggle-new-vault')
-  vaultData.value = {name:"", img:"", description:"", isPrivate: false}
+  vaultData.value = { name: "", img: "", description: "", isPrivate: false }
 }
 </script>
 
 
-<style lang="scss" scoped>
-
-
-</style>
+<style lang="scss" scoped></style>
