@@ -8,7 +8,7 @@
       <router-link v-if="showCreatorPic" :to="{ name: 'Profile', params: { profileId: keep.creatorId }}">
         <div class="absolute avatar right-0 bottom-0 pr-2 pb-[3px] ">
           <div v-if="showCreatorPic" class="w-10 rounded-full border border-black avatar-elevation">
-            <img :src="keep.creator.picture" alt="user image" />
+            <img :src="keep.creator.picture" alt="user image" :title="keep.creator.name" />
           </div>
         </div>
       </router-link>
