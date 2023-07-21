@@ -38,7 +38,7 @@
                       <div class="flex space-x-3 mt-1 mb-auto grow">
                         <i class="mdi mdi-eye" title="viewed">{{ keep.views }}</i>
                         <!-- NOTE LOGO NOT LEFT PICTURE -->
-                        <div class="flex space-x-1">
+                        <div class="flex space-x-1" title="Kept count">
 
                           <img class="aspect-square w-5 h-5" src="../assets/img/K-Logo.png" alt="keepr logo">
                           <i class="" title="Kept">{{ keep.kept }}</i>
@@ -54,7 +54,7 @@
 
                     </div>
                     <!-- BOTTOM -->
-                    <div id="bottom-items" class="flex flex-row-reverse sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4'">
+                    <div id="bottom-items" class="flex flex-row-reverse self-center sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4'">
 
                     
                       <div v-if="!vaultDisplay" class="flex space-x-2 text-center items-end sm:items-center">

@@ -78,8 +78,7 @@ CREATE TABLE
         vaultId INT NOT NULL,
         keepId INT NOT NULL,
         FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
-        FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE,
-        UNIQUE(keepId)
+        FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 DELETE FROM vaultkeeps WHERE id = 27 LIMIT 1;
