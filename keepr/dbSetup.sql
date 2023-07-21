@@ -6,13 +6,13 @@ CREATE TABLE
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
         picture varchar(255) COMMENT 'User Picture',
-        coverImg varchar(255) COMMENT 'User Cover Image'
     ) default charset utf8 COMMENT '';
 
 ALTER TABLE accounts
 ADD
-    COLUMN coverImg VARCHAR(255) NOT NULL DEFAULT "https://images.unsplash.com/photo-1595599512948-b9831e5fc11c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80";
+    COLUMN coverImg VARCHAR(255) DEFAULT "https://images.unsplash.com/photo-1595599512948-b9831e5fc11c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80";
 
+ALTER TABLE accounts DROP COLUMN coverImg;
 ALTER TABLE keeps
 ADD
     COLUMN Kept INT NOT NULL DEFAULT 0;
