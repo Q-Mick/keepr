@@ -69,7 +69,7 @@
                           <button @click="addKeepToVault()" :disabled="!loggedIn" class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                         </div>
                     
-                      <div v-else-if="user.id == keep.creatorId" class="flex items-center">
+                      <div v-else-if="user.id == activeVault.creatorId" class="flex items-center">
                         <button @click="removeKeepFromVault(keep.vaultKeepId)" title="Remove keep from vault" class="border-b border-zinc-700 m-0 p-0"><i class="mdi mdi-cancel">Remove</i></button>
                       </div>
 
@@ -116,6 +116,7 @@ import { PlusIcon } from '@heroicons/vue/20/solid'
 import { Keep } from "../models/Keep.js";
 const user = computed(() => AppState.account);
 const loggedIn = computed(() => AppState.user.isAuthenticated)
+const activeVault = computed(() => AppState.actVault)
 const selectedVault = ref('0')
 const vaults = ref(props.vault);
 const vaultKeepData = { keepId: "", vaultId: "" }
