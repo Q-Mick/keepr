@@ -54,26 +54,30 @@
 
                     </div>
                     <!-- BOTTOM -->
-                    <div id="bottom-items" class="flex flex-row-reverse self-center sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4'">
+                    <div id="bottom-items"
+                      class="flex flex-row-reverse self-center sm:flex-row w-full justify-between px-1 sm:px-8 pb-1 sm:pb-4'">
 
-                    
+
                       <div v-if="!vaultDisplay" class="flex space-x-2 text-center items-end sm:items-center">
-                        <!-- <button class="btn btn-xs sm:btn-small">Vaults</button> -->
-                      
 
-                          <select v-model="selectedVault" :disabled="!loggedIn" class="py-0 bg-slate-100 select select-xs w-full max-w-[6.5rem] focus:outline-none focus:border-none focus:ring-neutral">
-                            <option disabled selected value="0" class="font-bold">Vaults</option>
-                            <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
-                          </select>
-                          
-                          <button @click="addKeepToVault()" :disabled="!loggedIn" class="btn btn-neutral btn-xs sm:btn-small">Save</button>
-                        </div>
-                    
-                      <div v-else-if="user.id == activeVault.creatorId" class="flex items-center">
-                        <button @click="removeKeepFromVault(keep.vaultKeepId)" title="Remove keep from vault" class="border-b border-zinc-700 m-0 p-0"><i class="mdi mdi-cancel">Remove</i></button>
+
+                        <select v-model="selectedVault" :disabled="!loggedIn"
+                          class="py-0 bg-slate-100 select select-xs w-full max-w-[6.5rem] focus:outline-none focus:border-none focus:ring-neutral">
+                          <option disabled selected value="0" class="font-bold">Vaults</option>
+                          <option v-for="v in vault" :key="v.id" :value="v.id">{{ v.name }}</option>
+                        </select>
+
+                        <button @click="addKeepToVault()" :disabled="!loggedIn"
+                          class="btn btn-neutral btn-xs sm:btn-small">Save</button>
                       </div>
 
-                      <div :class="['flex flex-col-reverse sm:flex-row text-center items-start sm:items-center', user.id != keep.creatorId ? 'ml-auto' : ''  ]">
+                      <div v-else-if="user.id == activeVault.creatorId" class="flex items-center">
+                        <button @click="removeKeepFromVault(keep.vaultKeepId)" title="Remove keep from vault"
+                          class="border-b border-zinc-700 m-0 p-0"><i class="mdi mdi-cancel">Remove</i></button>
+                      </div>
+
+                      <div
+                        :class="['flex flex-col-reverse sm:flex-row text-center items-start sm:items-center', user.id != keep.creatorId ? 'ml-auto' : '']">
 
                         <p class="pr-2 text-sm font-bold hidden sm:inline">{{ keep.creator.name }}</p>
                         <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
@@ -122,7 +126,7 @@ const vaults = ref(props.vault);
 const vaultKeepData = { keepId: "", vaultId: "" }
 const emit = defineEmits(['toggle-details', 'remove-keep']);
 const props = defineProps({
-  vaultDisplay:{type: Boolean},
+  vaultDisplay: { type: Boolean },
   isOpen: Boolean,
   keep: {
     type: Object,
@@ -179,4 +183,5 @@ const toggleModal = () => {
 <style lang="scss" scoped>
 .elevation {
   box-shadow: 4px 4px 6px rgba(0, 0, 0, .6);
-}</style>
+}
+</style>
