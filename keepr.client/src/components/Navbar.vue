@@ -31,7 +31,7 @@
       </Dropdown>
       <!-- NOTE RE_USABLE DROPDOWN ^ -->
     </div>
-    <!-- KEEPR LOGO -->
+    <!-- KEEPR  - LOGO -->
 
     <div class="sm:inset-0 flex justify-center">
       <div class="h-12 rounded-sm my-1" :class="[user.isAuthenticated ? 'sm:mr-[9.5rem]' : '']">
@@ -83,15 +83,15 @@ export default {
 
         openNewVault.value = !openNewVault.value
       },
-      createNewKeep(keepData){
-       const newKeep = keepsService.createKeep(keepData)
-      //  logger.log("[KEEP CREATED] -", newKeep)
-       openNewKeep.value = false
+      createNewKeep(keepData) {
+        const newKeep = keepsService.createKeep(keepData)
+        //  logger.log("[KEEP CREATED] -", newKeep)
+        openNewKeep.value = false
       },
-      createNewVault(vaultData){
+      createNewVault(vaultData) {
         openNewVault.value = false
-       const newVault = vaultsService.createVault(vaultData)
-       logger.log("[VAULT CREATED] -", newVault)
+        const newVault = vaultsService.createVault(vaultData)
+        logger.log("[VAULT CREATED] -", newVault)
       }
     }
   },
