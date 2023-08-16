@@ -42,5 +42,5 @@ jobs:
           ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
 
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
-          scp -i ~/.ssh/id_rsa.pem -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
-          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"
+          sudo scp -i ~/.ssh/id_rsa.pem -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
+          sudo ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"
