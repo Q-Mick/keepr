@@ -1,12 +1,11 @@
 # Use the .NET Core SDK image as the base image
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
-RUN mkdir app
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the dotnet project files to the container
-COPY . .
+COPY . ./
 
 # Restore the .NET dependencies
 RUN dotnet restore
@@ -23,7 +22,7 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Expose the port your application listens on
-EXPOSE 80
+EXPOSE 8080
 
 # Set the entry point for the container
 ENTRYPOINT ["dotnet", "Keepr.dll"]
