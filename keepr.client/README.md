@@ -1,1 +1,1 @@
-Vue frontend, c# /net backend
+Vue frontend, c# /net backend deploy
