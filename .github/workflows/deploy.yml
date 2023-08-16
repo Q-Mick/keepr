@@ -25,7 +25,7 @@ jobs:
         run: |
           docker buildx create --use
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker buildx build --platform linux/amd64 -t qmick208/your-image-name:$DOCKER_IMAGE_TAG --push .
+          docker buildx build --platform linux/amd64 -t qmick208/keepr:$DOCKER_IMAGE_TAG --push .
 
       - name: SSH Deploy 📔
         env:
@@ -38,5 +38,5 @@ jobs:
           chmod 600 ~/.ssh/id_rsa.pem
 
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
-          scp -i ~/.ssh/id_rsa.pem -r path/to/your/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/path/to/destination
-          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /path/to/destination/docker-compose.yml up -d"
+          scp -i ~/.ssh/id_rsa.pem -r C:\Users\Q\source\codeworks\week11\keepr\keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
+          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"

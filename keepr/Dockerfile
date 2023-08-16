@@ -1,11 +1,12 @@
 # Use the .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
+RUN mkdir app
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the dotnet project files to the container
-COPY . ./
+COPY . .
 
 # Restore the .NET dependencies
 RUN dotnet restore
@@ -14,8 +15,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Create a new image using a lighter .NET Runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
-
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 # Set the working directory inside the container
 WORKDIR /app
 
