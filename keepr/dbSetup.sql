@@ -108,11 +108,11 @@ WHERE
     vault.CreatorId = '648cfae3f4c3b27d6717acfe'
 AND NOT vault.IsPrivate;
 
-     SELECT
-      vks.*,
-      keep.*,
-      act.*
-      FROM vaultkeeps vks
-      JOIN keeps keep ON keep.id = vks.KeepId
-      JOIN accounts act ON act.id = keep.creatorId
-      WHERE vks.VaultId = '248'
+    --  SELECT
+    --   vks.*,
+    --   keep.*,
+    --   act.*
+    --   FROM vaultkeeps vks
+    --   JOIN keeps keep ON keep.id = vks.KeepId
+    --   JOIN accounts act ON act.id = keep.creatorId
+    --   WHERE vks.VaultId = '248'
