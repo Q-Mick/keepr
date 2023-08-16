@@ -38,6 +38,8 @@ jobs:
           echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
           chmod 600 ~/.ssh/id_rsa.pem
 
+          # Add the host key for the EC2 instance to the known_hosts
+          ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
 
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path
           scp -i ~/.ssh/id_rsa.pem -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
