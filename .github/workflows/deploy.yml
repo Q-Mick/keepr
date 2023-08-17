@@ -41,16 +41,11 @@ jobs:
           # Add the host key for the EC2 instance to the known_hosts
           ssh-keyscan -t rsa $EC2_IP_ADDRESS >> ~/.ssh/known_hosts
 
-          # Copy the production buid to the ec2
-          scp -i ~/.ssh/id_rsa.pem -r keepr.client/docs/ $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr/prod
-
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path and copy from github
           scp -i ~/.ssh/id_rsa.pem -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
 
           # Copy appsettings.json to the running container on the EC2 instance
           ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker cp /app/keepr/appsettings.json keepr_web_1:/app/appsettings.json"
-
-          #serve the frontend
 
           # Start the container
           ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"
