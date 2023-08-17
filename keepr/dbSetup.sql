@@ -109,7 +109,7 @@ WHERE
 AND NOT vault.IsPrivate;
 
      SELECT
-    --   vks.*,
+      vks.*,
     --   keep.*,
     --   act.*
     --   FROM vaultkeeps vks
