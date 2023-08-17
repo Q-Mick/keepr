@@ -4,3 +4,5 @@ services:
     image: qmick208/keepr:latest
     ports:
       - '80:80'
+    volumes:
+      - /path/on/ec2:/app/keepr
