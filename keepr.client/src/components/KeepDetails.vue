@@ -25,8 +25,8 @@
                     class="absolute top-0 right-0 m-2 btn btn-error text-[10px] btn-xs focus:outline-none sm:btn-small">Delete
                     keep</button>
                   <div class="aspect-square w-full">
-                    <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg"
-                      alt="keep image">
+                    <img :src="keep.img" class="object-center w-full h-[100%] sm:h-full  sm:rounded-l-lg" alt="keep image"
+                      @click="toggleModal">
                   </div>
                 </div>
                 <!-- right modal pane -->
@@ -77,7 +77,7 @@
                       </div>
 
                       <div
-                        :class="['flex flex-col-reverse sm:flex-row text-center items-start sm:items-center', user.id != keep.creatorId ? 'ml-auto' : '']">
+                        :class="[ 'flex flex-col-reverse sm:flex-row text-center items-start sm:items-center', user.id != keep.creatorId ? '' : '' ]">
 
                         <p class="pr-2 text-sm font-bold hidden sm:inline">{{ keep.creator.name }}</p>
                         <router-link :to="{ name: 'Profile', params: { profileId: keep.creatorId } }">
@@ -124,7 +124,7 @@ const activeVault = computed(() => AppState.actVault)
 const selectedVault = ref('0')
 const vaults = ref(props.vault);
 const vaultKeepData = { keepId: "", vaultId: "" }
-const emit = defineEmits(['toggle-details', 'remove-keep']);
+const emit = defineEmits([ 'toggle-details', 'remove-keep' ]);
 const props = defineProps({
   vaultDisplay: { type: Boolean },
   isOpen: Boolean,
