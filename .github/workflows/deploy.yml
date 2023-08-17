@@ -43,11 +43,8 @@ jobs:
           # Replace "path/to/your/docker-compose.yml" with your actual Docker Compose file path and copy from github
           scp -i ~/.ssh/id_rsa.pem -r keepr/docker-compose.yml $EC2_USERNAME@$EC2_IP_ADDRESS:/app/keepr
 
-          # Start the container
-          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"
-
           # Copy appsettings.json to the running container on the EC2 instance
           ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker cp /app/keepr/appsettings.json keepr_web_1:/app/appsettings.json"
 
-          # Reboot on config change
-          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "cd /app/keepr && docker-compose down && docker-compose up -d"
+          # Start the container
+          ssh -i ~/.ssh/id_rsa.pem $EC2_USERNAME@$EC2_IP_ADDRESS "docker-compose -f /app/keepr/docker-compose.yml up -d"
