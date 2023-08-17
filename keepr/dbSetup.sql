@@ -108,8 +108,8 @@ WHERE
     vault.CreatorId = '648cfae3f4c3b27d6717acfe'
 AND NOT vault.IsPrivate;
 
-     SELECT
-      vks.*,
+    --  SELECT
+    --   vks.*,
     --   keep.*,
     --   act.*
     --   FROM vaultkeeps vks
