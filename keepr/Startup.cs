@@ -24,6 +24,11 @@ public class Startup
     ConfigureCors(services);
     ConfigureAuth(services);
     services.AddControllers();
+
+// Add Yarp services
+    services.AddReverseProxy()
+    .LoadFromConfig(Configuration.GetSection("ReverseProxy"));
+
     services.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("v1", new OpenApiInfo { Title = "keepr", Version = "v1" });
@@ -106,10 +111,10 @@ public class Startup
 
     app.UseAuthorization();
 
-
     app.UseEndpoints(endpoints =>
     {
       endpoints.MapControllers();
+      endpoints.MapReverseProxy();
     });
   }
 }
