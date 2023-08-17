@@ -4,5 +4,5 @@ services:
     image: qmick208/keepr:latest
     container_name: keepr_web_1   # Specify the desired container name
     ports:
-      - '3000:80'
+      - '80:80'
 
