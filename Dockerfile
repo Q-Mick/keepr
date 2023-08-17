@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-backend
 WORKDIR /app
 
 # Copy the dotnet project files to the container
-COPY . ./
+COPY ./keepr ./
 
 # Restore the .NET dependencies
 RUN dotnet restore
@@ -20,7 +20,7 @@ FROM node:18 AS build-frontend
 WORKDIR /app/keepr
 
 # Copy the frontend source code
-COPY ../keepr.client .
+COPY ./keepr.client ./
 
 # Install frontend dependencies
 RUN npm install
