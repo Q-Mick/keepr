@@ -20,7 +20,7 @@ FROM node:18 AS build-frontend
 WORKDIR /app/keepr
 
 # Copy the frontend source code
-COPY ./keepr.client ./
+COPY ./keepr.client .
 
 # Install frontend dependencies
 RUN npm install
@@ -38,7 +38,7 @@ WORKDIR /app
 COPY --from=build-backend /app/out .
 
 # Copy the built frontend files from the build-frontend stage to the wwwroot folder of the container
-COPY --from=build-frontend /app/keepr/docs/ ./wwwroot
+COPY --from=build-frontend /app/keepr/docs ./wwwroot
 
 # Expose the port your application listens on
 EXPOSE 80
