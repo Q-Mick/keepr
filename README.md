@@ -9,7 +9,7 @@ I opted to show Keeps in a masonry grid layout.
 
 Deployed front and backend on an AWS utilizing, UBUNTU, Docker, .NET and NGINX
 
-Frontend - VUE.JS (Composition API), Tailwind CSS - Demonstrated strong frontend fundamentals by creating a responsive layout for whichever device you would like to interact with the app.
+Frontend - VUE.JS (Composition API), Tailwind, JS, CSS, HTML - Demonstrated strong frontend fundamentals by creating a responsive layout for whichever device you would like to interact with the app.
 
 Backend - Developed a robust API, with one to many and many to many relationships and user authentication via Auth0.
 Backend stack - C#, MySQL(AWS RDS Database), AWS EC2, leveraged Docker containers and github actions to push production build for AWS deployment
