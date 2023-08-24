@@ -1,6 +1,7 @@
 # [Keepr app](https://keepr.qmthedv.com)
 
-Keepr is a Picture collecting social site, users can post pictures(Keeps) and they can also create Vaults. Vaults can be public or private, any keep can be stored in a Vault(many to many).
+Keepr is a Picture collecting social site, users can post pictures(Keeps) and they can also create Vaults.  
+Vaults can be public or private, any keep can be stored in a Vault(many to many).
 each user has their own profile which has their collection of vaults and keeps which can be viewed by any other user unless it was marked private.
 ![image](https://github.com/Q-Mick/keepr/assets/90156237/8d692dfc-7c9d-4b5f-8c1b-720a61c2922b) 
 I opted to show Keeps in a masonry grid layout.
