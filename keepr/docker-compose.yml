@@ -4,4 +4,6 @@ services:
     image: qmick208/keepr
     container_name: keepr_web_1 # Specify the desired container name
     ports:
-      - '80:80'
+      - '8080:80'
+    env_file:
+      - .env
