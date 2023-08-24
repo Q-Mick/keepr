@@ -14,6 +14,6 @@ Backend stack - Leveraged Docker containers for AWS deployment and built the bac
 
 ![image](https://github.com/Q-Mick/keepr/assets/90156237/2bc89671-cb84-452d-bd2c-2f68ee307550)
 
-TODO: Add Amazon S3 Bucket for posting of clients pictures from their device rather than just supplying a link.
-TODO: Caching of the data to keep the API requests to a minimum.
-TODO: Skeleton Loaders.
+TODO: Add Amazon S3 Bucket for posting of clients pictures from their device rather than just supplying a link.  
+TODO: Caching of the data to keep the API requests to a minimum.  
+TODO: Skeleton Loaders.  
