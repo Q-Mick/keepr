@@ -7,12 +7,12 @@ each user has their own public profile which has their collection of vaults and 
 
 I opted to show Keeps in a masonry grid layout.
 
-Deployed front and backend on an AWS EC2 instance utilizing, UBUNTU, Docker, docker-compose, .NET and NGINX
+Deployed front and backend on an AWS utilizing, UBUNTU, Docker, .NET and NGINX
 
-Frontend - VUE.JS (Composition API), Tailwind CSS - Demonstrated strong frontend fundamentals by creating a responsive layout for whichever device you would like to use to interact with the app.
+Frontend - VUE.JS (Composition API), Tailwind CSS - Demonstrated strong frontend fundamentals by creating a responsive layout for whichever device you would like to interact with the app.
 
-Achieved - Developed a robust API, with one to many and many to many relationships and user authentication via Auth0.
-Backend stack - Leveraged Docker containers for AWS deployment and built the backend using C#, MySQL(AWS RDS Database)
+Backend - Developed a robust API, with one to many and many to many relationships and user authentication via Auth0.
+Backend stack - C#, MySQL(AWS RDS Database), AWS EC2, leveraged Docker containers and github actions to push production build for AWS deployment
 
 ![image](https://github.com/Q-Mick/keepr/assets/90156237/2bc89671-cb84-452d-bd2c-2f68ee307550)
 
