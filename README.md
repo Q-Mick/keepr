@@ -1,4 +1,4 @@
-# [Keepr app](https://keepr.qmthedev.com)
+# [Try it out live - Keepr demo](https://keepr.qmthedev.com)
 
 Keepr is a Picture collecting social site, users can post pictures(Keeps) and they can also create Vaults.  
 Vaults can be public or private, any keep can be stored in a Vault(many to many).
